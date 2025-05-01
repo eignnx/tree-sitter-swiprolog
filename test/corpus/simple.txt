@@ -379,3 +379,75 @@ Number - hexadecimal
 (source_file
   (clause
     (number)))
+
+===
+Operator term - simple
+===
+a + b.
+---
+
+(source_file
+  (clause
+    (operator_term
+      (atom
+        (unquoted_atom))
+      (operator)
+      (atom
+        (unquoted_atom)))))
+
+===
+Operator term - two operators
+===
+a + b * c.
+---
+
+(source_file
+  (clause
+    (operator_term
+      (operator_term
+        (atom
+          (unquoted_atom))
+        (operator)
+        (atom
+          (unquoted_atom)))
+      (operator)
+      (atom
+        (unquoted_atom)))))
+
+===
+Operator term - multiple of same
+===
+a + b + b + c.
+---
+
+(source_file
+  (clause
+    (operator_term
+      (operator_term
+        (operator_term
+          (atom
+            (unquoted_atom))
+          (operator)
+          (atom
+            (unquoted_atom)))
+        (operator)
+        (atom
+          (unquoted_atom)))
+      (operator)
+      (atom
+        (unquoted_atom)))))
+
+===
+Operator term - multi-character operator
+===
+a +--+ b.
+---
+
+(source_file
+  (clause
+    (operator_term
+      (atom
+        (unquoted_atom))
+      (operator)
+      (atom
+        (unquoted_atom)))))

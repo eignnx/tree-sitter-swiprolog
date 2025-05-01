@@ -66,6 +66,10 @@
           "named": true
         },
         {
+          "type": "operator_term",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -112,6 +116,10 @@
           "named": true
         },
         {
+          "type": "operator_term",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -144,6 +152,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "operator_term",
           "named": true
         },
         {
@@ -205,6 +217,10 @@
           "named": true
         },
         {
+          "type": "operator_term",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -219,6 +235,90 @@
     "type": "number",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "operator_term",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "compound_term",
+            "named": true
+          },
+          {
+            "type": "list_literal",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "operator_term",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operator",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "compound_term",
+            "named": true
+          },
+          {
+            "type": "list_literal",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "operator_term",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "quoted_atom",
@@ -328,6 +428,10 @@
   },
   {
     "type": "format_string_placeholder",
+    "named": true
+  },
+  {
+    "type": "operator",
     "named": true
   },
   {

@@ -44,6 +44,7 @@ module.exports = grammar({
       $.variable,
       $.list_literal,
       $.number,
+      $.operator_term,
     ),
 
     compound_term: $ => seq(
@@ -133,5 +134,13 @@ module.exports = grammar({
       /[-+]?[1-9][0-9]*/,
       /[-+]?0/,
     ),
+
+    operator_term: $ => prec.left(10, seq(
+      field("left", $._term),
+      field("operator", $.operator),
+      field("right", $._term),
+    )),
+
+    operator: $ => /[-+*/\\@#$^&~:<>=?]+/,
   },
 });
