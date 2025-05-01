@@ -1,0 +1,36 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "swiprolog",
+      "camelcase": "SwiProlog",
+      "title": "SWI Prolog",
+      "scope": "source.swiprolog",
+      "file-types": [
+        "swipl"
+      ],
+      "injection-regex": "^swiprolog$",
+      "class-name": "TreeSitterSwiprolog"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Prolog syntax aimed at SWI Prolog",
+    "authors": [
+      {
+        "name": "eignnx",
+        "email": "eignnx@gmail.com"
+      }
+    ]
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

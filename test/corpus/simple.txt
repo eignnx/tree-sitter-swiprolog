@@ -1,0 +1,168 @@
+===
+Atomic Fact
+===
+fact.
+---
+
+(source_file
+  (clause
+    (atom
+      (unquoted_atom))))
+
+===
+Atomic Directive
+===
+:-atom.
+---
+
+(source_file
+  (directive
+    (atom
+      (unquoted_atom))))
+
+===
+Atom with Underscore
+===
+my_fact.
+---
+
+(source_file
+  (clause
+    (atom
+      (unquoted_atom))))
+
+===
+Directive with space
+===
+:- thing.
+---
+
+(source_file
+  (directive
+    (atom
+      (unquoted_atom))))
+
+===
+Quoted atom
+===
+'asdf'.
+---
+
+(source_file
+  (clause
+    (atom
+      (quoted_atom
+        (single_quoted_content)))))
+
+===
+Quoted format string
+===
+'asdf~nasdf'.
+---
+
+(source_file
+  (clause
+    (atom
+      (quoted_atom
+        (single_quoted_content)
+        (format_string_placeholder)
+        (single_quoted_content)))))
+
+===
+Quoted atom with character escape
+===
+'asdf\nasdf'.
+---
+
+(source_file
+  (clause
+    (atom
+      (quoted_atom
+        (single_quoted_content)
+        (single_quoted_character_escape)
+        (single_quoted_content)))))
+
+===
+Quoted atom with character escape and format string placeholder
+===
+:- 'qwerty\npoiu~~lkjhg'.
+---
+
+(source_file
+  (directive
+    (atom
+      (quoted_atom
+        (single_quoted_content)
+        (single_quoted_character_escape)
+        (single_quoted_content)
+        (format_string_placeholder)
+        (single_quoted_content)))))
+
+===
+Double quoted string
+===
+"asdf".
+---
+
+(source_file
+  (clause
+    (string
+      (double_quoted_string
+        (double_quoted_content)))))
+
+===
+Double quoted string with character escape
+===
+"as\ndf".
+---
+
+(source_file
+  (clause
+    (string
+      (double_quoted_string
+        (double_quoted_content)
+        (double_quoted_character_escape)
+        (double_quoted_content)))))
+
+===
+Double quoted string with escaped double quote
+===
+"as\"df".
+---
+
+(source_file
+  (clause
+    (string
+      (double_quoted_string
+        (double_quoted_content)
+        (double_quoted_character_escape)
+        (double_quoted_content)))))
+
+===
+Simple compound term
+===
+compound(term).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (atom
+        (unquoted_atom)))))
+
+===
+Quoted functor compound term
+===
+'this is a functor'(blah).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (quoted_atom
+          (single_quoted_content)))
+      (atom
+        (unquoted_atom)))))
