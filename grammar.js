@@ -34,6 +34,10 @@ module.exports = grammar({
     ),
 
     _term: $ => choice(
+      $._restricted_operators_term,
+    ),
+
+    _restricted_operators_term: $ => choice(
       $.compound_term,
       $.atom,
       $.string,
@@ -43,7 +47,11 @@ module.exports = grammar({
     compound_term: $ => seq(
       field("functor", $.atom),
         "(",
-        $._term,
+        $._restricted_operators_term,
+        repeat(seq(
+          ",",
+          $._restricted_operators_term,
+        )),
         ")",
     ),
 

@@ -47,7 +47,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atom",
@@ -84,7 +84,7 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -112,7 +112,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atom",
@@ -224,6 +224,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
     "named": false
   },
   {

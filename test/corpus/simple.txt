@@ -218,3 +218,18 @@ anything(QWerty43_51X).
       (atom
         (unquoted_atom))
       (variable))))
+
+===
+Multiple arguments in compound term
+===
+append(A, B, C).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (variable)
+      (variable)
+      (variable))))

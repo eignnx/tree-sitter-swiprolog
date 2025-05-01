@@ -74,6 +74,15 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "_restricted_operators_term"
+        }
+      ]
+    },
+    "_restricted_operators_term": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
           "name": "compound_term"
         },
         {
@@ -107,7 +116,23 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_term"
+          "name": "_restricted_operators_term"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_restricted_operators_term"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
