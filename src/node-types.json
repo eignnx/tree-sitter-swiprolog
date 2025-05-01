@@ -58,6 +58,10 @@
           "named": true
         },
         {
+          "type": "list_literal",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -96,6 +100,10 @@
           "named": true
         },
         {
+          "type": "list_literal",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -120,6 +128,10 @@
         },
         {
           "type": "compound_term",
+          "named": true
+        },
+        {
+          "type": "list_literal",
           "named": true
         },
         {
@@ -151,6 +163,37 @@
         },
         {
           "type": "format_string_placeholder",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "compound_term",
+          "named": true
+        },
+        {
+          "type": "list_literal",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "variable",
           "named": true
         }
       ]
@@ -239,6 +282,14 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
     "type": "backticked_character_escape",
     "named": true
   },
@@ -273,5 +324,9 @@
   {
     "type": "variable",
     "named": true
+  },
+  {
+    "type": "|",
+    "named": false
   }
 ]

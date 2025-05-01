@@ -233,3 +233,71 @@ append(A, B, C).
       (variable)
       (variable)
       (variable))))
+
+===
+List - empty
+===
+[].
+---
+
+(source_file
+  (clause
+    (list_literal)))
+
+===
+List - one item
+===
+[a].
+---
+
+(source_file
+  (clause
+    (list_literal
+      (atom
+        (unquoted_atom)))))
+
+===
+List - two items
+===
+[a, b].
+---
+
+(source_file
+  (clause
+    (list_literal
+      (atom
+        (unquoted_atom))
+      (atom
+        (unquoted_atom)))))
+
+===
+List - simple cons
+===
+[a | b].
+---
+
+(source_file
+  (clause
+    (list_literal
+      (atom
+        (unquoted_atom))
+      (atom
+        (unquoted_atom)))))
+
+===
+List - multi-item and cons
+===
+[a, b, c | tail].
+---
+
+(source_file
+  (clause
+    (list_literal
+      (atom
+        (unquoted_atom))
+      (atom
+        (unquoted_atom))
+      (atom
+        (unquoted_atom))
+      (atom
+        (unquoted_atom)))))

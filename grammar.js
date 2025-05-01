@@ -42,6 +42,7 @@ module.exports = grammar({
       $.atom,
       $.string,
       $.variable,
+      $.list_literal,
     ),
 
     compound_term: $ => seq(
@@ -112,5 +113,16 @@ module.exports = grammar({
     backticked_content: $ => /[^\\~`]+/,
 
     variable: $ => /[_A-Z][a-zA-Z0-9_]*/,
+
+    list_literal: $ => choice(
+      seq("[", "]"),
+      seq(
+        "[",
+        $._restricted_operators_term,
+        repeat(seq(",", $._restricted_operators_term)),
+        optional(seq("|", $._term)),
+        "]",
+      ),
+    ),
   },
 });
