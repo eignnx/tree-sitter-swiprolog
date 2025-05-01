@@ -11,10 +11,10 @@ module.exports = grammar({
   name: "swiprolog",
 
   rules: {
-    source_file: $ => choice(
+    source_file: $ => repeat(choice(
       $.directive,
       $.clause,
-    ),
+    )),
 
     directive: $ => seq(
       ":-",
@@ -37,6 +37,7 @@ module.exports = grammar({
       $.compound_term,
       $.atom,
       $.string,
+      $.variable,
     ),
 
     compound_term: $ => seq(
@@ -101,5 +102,7 @@ module.exports = grammar({
     ),
     backticked_character_escape: $ => /\\[nrtv\\`]/,
     backticked_content: $ => /[^\\~`]+/,
+
+    variable: $ => /[_A-Z][a-zA-Z0-9_]*/,
   },
 });

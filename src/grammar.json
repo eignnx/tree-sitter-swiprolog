@@ -3,17 +3,20 @@
   "name": "swiprolog",
   "rules": {
     "source_file": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "directive"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "clause"
-        }
-      ]
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "directive"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "clause"
+          }
+        ]
+      }
     },
     "directive": {
       "type": "SEQ",
@@ -80,6 +83,10 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
         }
       ]
     },
@@ -276,6 +283,10 @@
     "backticked_content": {
       "type": "PATTERN",
       "value": "[^\\\\~`]+"
+    },
+    "variable": {
+      "type": "PATTERN",
+      "value": "[_A-Z][a-zA-Z0-9_]*"
     }
   },
   "extras": [

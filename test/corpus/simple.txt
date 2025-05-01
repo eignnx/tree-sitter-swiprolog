@@ -166,3 +166,55 @@ Quoted functor compound term
           (single_quoted_content)))
       (atom
         (unquoted_atom)))))
+
+===
+Variable - single letter
+===
+anything(X).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (variable))))
+
+===
+Variable - underscore
+===
+anything(_).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (variable))))
+
+===
+Variable - multi-letter
+===
+anything(Asdf).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (variable))))
+
+===
+Variable - all kinds of characters
+===
+anything(QWerty43_51X).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (variable))))

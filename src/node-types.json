@@ -60,6 +60,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
         }
       ]
     }
@@ -94,6 +98,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
         }
       ]
     }
@@ -116,6 +124,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "variable",
           "named": true
         }
       ]
@@ -173,8 +185,8 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
           "type": "clause",
@@ -252,6 +264,10 @@
   },
   {
     "type": "unquoted_atom",
+    "named": true
+  },
+  {
+    "type": "variable",
     "named": true
   }
 ]
