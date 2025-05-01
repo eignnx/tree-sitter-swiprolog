@@ -301,3 +301,81 @@ List - multi-item and cons
         (unquoted_atom))
       (atom
         (unquoted_atom)))))
+
+===
+Number - decimal (no sign)
+===
+1234.
+---
+
+(source_file
+  (clause
+    (number)))
+
+===
+Number - decimal zero
+===
+0.
+---
+
+(source_file
+  (clause
+    (number)))
+
+===
+Number - signed zero
+===
+pair(-0, +0).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (number)
+      (number))))
+
+===
+Number - decimal (signed)
+===
+pair(-345, +632).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (number)
+      (number))))
+
+===
+Number - binary
+===
+0b00101011.
+---
+
+(source_file
+  (clause
+    (number)))
+
+===
+Number - octal
+===
+0o3427.
+---
+
+(source_file
+  (clause
+    (number)))
+
+===
+Number - hexadecimal
+===
+0x2a1f3e5.
+---
+
+(source_file
+  (clause
+    (number)))

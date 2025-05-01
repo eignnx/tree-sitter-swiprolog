@@ -100,6 +100,10 @@
         {
           "type": "SYMBOL",
           "name": "list_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
         }
       ]
     },
@@ -386,6 +390,31 @@
               "value": "]"
             }
           ]
+        }
+      ]
+    },
+    "number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "0[xX][0-9a-fA-F]+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "0b[01]+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "0o[0-7]+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[-+]?[1-9][0-9]*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[-+]?0"
         }
       ]
     }

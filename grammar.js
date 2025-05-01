@@ -43,6 +43,7 @@ module.exports = grammar({
       $.string,
       $.variable,
       $.list_literal,
+      $.number,
     ),
 
     compound_term: $ => seq(
@@ -123,6 +124,14 @@ module.exports = grammar({
         optional(seq("|", $._term)),
         "]",
       ),
+    ),
+
+    number: $ => choice(
+      /0[xX][0-9a-fA-F]+/,
+      /0b[01]+/,
+      /0o[0-7]+/,
+      /[-+]?[1-9][0-9]*/,
+      /[-+]?0/,
     ),
   },
 });
