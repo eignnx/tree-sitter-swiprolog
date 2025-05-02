@@ -451,3 +451,109 @@ a +--+ b.
       (operator)
       (atom
         (unquoted_atom)))))
+
+===
+Operator term - operator in compound term
+===
+thing(A + B, 1 - 2).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (operator_term
+        (variable)
+        (operator)
+        (variable))
+      (operator_term
+        (number)
+        (operator)
+        (number)))))
+
+===
+Operator term - operator in list
+===
+[A + B, 1 - 2].
+---
+
+(source_file
+  (clause
+    (list_literal
+      (operator_term
+        (variable)
+        (operator)
+        (variable))
+      (operator_term
+        (number)
+        (operator)
+        (number)))))
+
+===
+Append
+===
+append([], Ys, Ys).
+append([X|Xs], Ys, [X|XsYs]) :-
+    append(Xs, Ys, XsYs).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (list_literal)
+      (variable)
+      (variable)))
+  (clause
+    (operator_term
+      (compound_term
+        (atom
+          (unquoted_atom))
+        (list_literal
+          (variable)
+          (variable))
+        (variable)
+        (list_literal
+          (variable)
+          (variable)))
+      (operator)
+      (compound_term
+        (atom
+          (unquoted_atom))
+        (variable)
+        (variable)
+        (variable)))))
+
+===
+Parenthesized
+===
+blah( (x) ).
+---
+
+(source_file
+  (clause
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (parenthesized_term
+        (atom
+          (unquoted_atom))))))
+
+===
+Curly Braced Term
+===
+{ 1, 2, 3 }.
+---
+
+(source_file
+  (clause
+    (curly_braced_term
+      (operator_term
+        (operator_term
+          (number)
+          (operator)
+          (number))
+        (operator)
+        (number)))))

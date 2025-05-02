@@ -22,16 +22,7 @@ module.exports = grammar({
       ".",
     ),
 
-    clause: $ => seq(
-      $._term,
-      optional(
-        seq(
-          ":-",
-          $._term,
-        ),
-      ),
-      ".",
-    ),
+    clause: $ => seq($._term, "."),
 
     _term: $ => choice(
       $._restricted_operators_term,
@@ -44,19 +35,21 @@ module.exports = grammar({
       $.variable,
       $.list_literal,
       $.number,
-      $.operator_term,
+      prec(5, $.operator_term),
+      $.parenthesized_term,
+      $.curly_braced_term,
     ),
 
-    compound_term: $ => seq(
+    compound_term: $ => prec(100, seq(
       field("functor", $.atom),
         "(",
-        $._restricted_operators_term,
+        prec(5, $._restricted_operators_term),
         repeat(seq(
           ",",
-          $._restricted_operators_term,
+          prec(5, $._restricted_operators_term),
         )),
         ")",
-    ),
+    )),
 
 
     atom: $ => choice(
@@ -116,16 +109,16 @@ module.exports = grammar({
 
     variable: $ => /[_A-Z][a-zA-Z0-9_]*/,
 
-    list_literal: $ => choice(
+    list_literal: $ => prec(100, choice(
       seq("[", "]"),
       seq(
         "[",
-        $._restricted_operators_term,
-        repeat(seq(",", $._restricted_operators_term)),
+        prec(15, $._restricted_operators_term),
+        prec.left(50, repeat(seq(",", prec(15, $._restricted_operators_term)))),
         optional(seq("|", $._term)),
         "]",
       ),
-    ),
+    )),
 
     number: $ => choice(
       /0[xX][0-9a-fA-F]+/,
@@ -141,6 +134,14 @@ module.exports = grammar({
       field("right", $._term),
     )),
 
-    operator: $ => /[-+*/\\@#$^&~:<>=?]+/,
+    operator: $ => choice(
+      $._non_comma_operator,
+      ",",
+      ";",
+    ),
+    _non_comma_operator: $ => /[-+*/\^<>=~:.?@#$&]+/,
+
+    parenthesized_term: $ => seq("(", $._term, ")"),
+    curly_braced_term: $ => seq("{", $._term, "}"),
   },
 });
