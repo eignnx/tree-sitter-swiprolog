@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "graphic_char_atom",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -579,6 +583,10 @@
   },
   {
     "type": "format_string_placeholder",
+    "named": true
+  },
+  {
+    "type": "graphic_char_atom",
     "named": true
   },
   {

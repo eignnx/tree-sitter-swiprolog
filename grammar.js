@@ -55,6 +55,7 @@ module.exports = grammar({
     atom: $ => choice(
       $.unquoted_atom,
       $.quoted_atom,
+      $.graphic_char_atom,
     ),
 
     unquoted_atom: $ => /[a-z][a-zA-Z_]*/,
@@ -85,6 +86,8 @@ module.exports = grammar({
 
     single_quoted_character_escape: $ => /\\[nrtv\\']/,
     single_quoted_content: $ => /[^\\~']+/,
+
+    graphic_char_atom: $ => /!|[-+*/\^<>=~:?@#$&][-+*/\^<>=~:.?@#$&]*/,
 
     string: $ => choice(
       $.double_quoted_string,
@@ -138,7 +141,7 @@ module.exports = grammar({
       /[-+]?0/,
     ),
 
-    operator_term: $ => prec.left(10, seq(
+    operator_term: $ => prec.right(seq(
       field("left", $._term),
       field("operator", $.operator),
       field("right", $._term),

@@ -404,15 +404,15 @@ a + b * c.
 (source_file
   (clause
     (operator_term
+      (atom
+        (unquoted_atom))
+      (operator)
       (operator_term
         (atom
           (unquoted_atom))
         (operator)
         (atom
-          (unquoted_atom)))
-      (operator)
-      (atom
-        (unquoted_atom)))))
+          (unquoted_atom))))))
 
 ===
 Operator term - multiple of same
@@ -423,19 +423,19 @@ a + b + b + c.
 (source_file
   (clause
     (operator_term
+      (atom
+        (unquoted_atom))
+      (operator)
       (operator_term
+        (atom
+          (unquoted_atom))
+        (operator)
         (operator_term
           (atom
             (unquoted_atom))
           (operator)
           (atom
-            (unquoted_atom)))
-        (operator)
-        (atom
-          (unquoted_atom)))
-      (operator)
-      (atom
-        (unquoted_atom)))))
+            (unquoted_atom)))))))
 
 ===
 Operator term - multi-character operator
@@ -466,11 +466,13 @@ thing(A + B, 1 - 2).
       (operator_term
         (variable)
         (operator)
-        (variable))
-      (operator_term
-        (number)
-        (operator)
-        (number)))))
+        (operator_term
+          (variable)
+          (operator)
+          (operator_term
+            (number)
+            (operator)
+            (number)))))))
 
 ===
 Operator term - operator in list
@@ -484,11 +486,13 @@ Operator term - operator in list
       (operator_term
         (variable)
         (operator)
-        (variable))
-      (operator_term
-        (number)
-        (operator)
-        (number)))))
+        (operator_term
+          (variable)
+          (operator)
+          (operator_term
+            (number)
+            (operator)
+            (number)))))))
 
 ===
 Append
@@ -551,9 +555,9 @@ Curly Braced Term
   (clause
     (curly_braced_term
       (operator_term
+        (number)
+        (operator)
         (operator_term
           (number)
           (operator)
-          (number))
-        (operator)
-        (number)))))
+          (number))))))
