@@ -210,8 +210,58 @@
       ]
     },
     "format_string_placeholder": {
-      "type": "PATTERN",
-      "value": "~[~nt]"
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "~"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "(`.)?t"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "PATTERN",
+                        "value": "\\d+|\\*"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ":"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[acd~DeEgfGiknNpqrR@s\\|\\+wW]"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "single_quoted_character_escape": {
       "type": "PATTERN",

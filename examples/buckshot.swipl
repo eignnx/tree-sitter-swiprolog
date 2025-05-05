@@ -1,3 +1,22 @@
 :- module(buckshot).
 
 pred(X) :- test(X).
+
+'this is a~n thing'(asd).
+
+test :-
+    asdf,
+    format('a~tsdf~tas~`_tdf~*|', [123]),
+end.
+
+end.
+
+dcg(asdf) --> [].
+
+0 <++> 0 :- Lhs = Rhs.
+Lhs <++> Rhs :- Lhs = Rhs.
+
+append([], X, X).
+append([X|Xs], Ys, [X|XsYs]) :-
+    append(Xs, Ys, XsYs).
+

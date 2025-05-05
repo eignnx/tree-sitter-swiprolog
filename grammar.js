@@ -71,7 +71,17 @@ module.exports = grammar({
       $.single_quoted_content,
     ),
 
-    format_string_placeholder: $ => /~[~nt]/,
+    format_string_placeholder: $ => token.immediate(seq(
+      "~",
+      choice(
+        /(`.)?t/,
+        seq(
+          optional(/\d+|\*/),
+          optional(":"),
+          /[acd~DeEgfGiknNpqrR@s\|\+wW]/
+        ),
+      )
+    )),
 
     single_quoted_character_escape: $ => /\\[nrtv\\']/,
     single_quoted_content: $ => /[^\\~']+/,
