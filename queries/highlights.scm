@@ -7,6 +7,7 @@
 (operator) @operator
 
 (unquoted_atom) @constant
+(graphic_char_atom) @constant
 (quoted_atom) @string
 (double_quoted_string) @string
 (backtick_string) @string
@@ -40,3 +41,28 @@
                             (#set! priority 110)
                             (#any-of? @keyword.function
                                 ":-" "-->" "==>" "<=>")))
+
+((operator) @punctuation.delimiter
+            (#set! priority 110)
+            (#any-of? @punctuation.delimiter
+             "," ";" "|"))
+
+((graphic_char_atom) @keyword.exception
+                     (#set! priority 110)
+                     (#any-of? @keyword.exception
+                      "!" ))
+
+((operator) @keyword.exception
+            (#set! priority 110)
+            (#any-of? @keyword.exception
+             "->" "\\+" "\\=" "=.."))
+
+(compound_term
+  functor: (atom ((unquoted_atom) @keyword.exception
+                            (#set! priority 110)
+                            (#any-of? @keyword.exception
+                             "var" "ground" "nonvar" "not" "is" "asserta"
+                             "assertz" "retract" "retractall" "abolish" "read"
+                             "once" "memberchk" "term_variables"
+                             "read_term_from_aotm" "random" "date" "shell"))))
+
