@@ -38,6 +38,7 @@ module.exports = grammar({
       prec(5, $.operator_term),
       $.parenthesized_term,
       $.curly_braced_term,
+      $.dict_literal,
     ),
 
     compound_term: $ => prec(100, seq(
@@ -156,5 +157,29 @@ module.exports = grammar({
 
     parenthesized_term: $ => seq("(", $._term, ")"),
     curly_braced_term: $ => seq("{", $._term, "}"),
+
+    dict_literal: $ => seq(
+      field("tag", $.atom),
+      field("keys_values", delimited_comma_sep("{", $.dict_key_value_pair, "}")),
+    ),
+
+    dict_key_value_pair: $ => prec.left(20, seq(
+      field("dict_key", $._non_graphic_char_atom),
+      ":",
+      field("dict_value", $._restricted_operators_term),
+    )),
+
+    _non_graphic_char_atom: $ => choice(
+      $.unquoted_atom,
+      $.quoted_atom,
+    ),
   },
 });
+
+function delimited_comma_sep(open, item, close) {
+  return seq(
+    open,
+    optional(seq(item, repeat(seq(",", item)))),
+    close,
+  )
+}

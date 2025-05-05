@@ -99,6 +99,10 @@
         {
           "type": "SYMBOL",
           "name": "curly_braced_term"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dict_literal"
         }
       ]
     },
@@ -584,6 +588,111 @@
         {
           "type": "STRING",
           "value": "}"
+        }
+      ]
+    },
+    "dict_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "tag",
+          "content": {
+            "type": "SYMBOL",
+            "name": "atom"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "keys_values",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "{"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dict_key_value_pair"
+                      },
+                      {
+                        "type": "REPEAT",
+                        "content": {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": ","
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "dict_key_value_pair"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "STRING",
+                "value": "}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "dict_key_value_pair": {
+      "type": "PREC_LEFT",
+      "value": 20,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "dict_key",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_non_graphic_char_atom"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "FIELD",
+            "name": "dict_value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_restricted_operators_term"
+            }
+          }
+        ]
+      }
+    },
+    "_non_graphic_char_atom": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "unquoted_atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quoted_atom"
         }
       ]
     }

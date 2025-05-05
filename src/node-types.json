@@ -66,6 +66,10 @@
           "named": true
         },
         {
+          "type": "dict_literal",
+          "named": true
+        },
+        {
           "type": "list_literal",
           "named": true
         },
@@ -124,6 +128,10 @@
           "named": true
         },
         {
+          "type": "dict_literal",
+          "named": true
+        },
+        {
           "type": "list_literal",
           "named": true
         },
@@ -171,6 +179,10 @@
           "named": true
         },
         {
+          "type": "dict_literal",
+          "named": true
+        },
+        {
           "type": "list_literal",
           "named": true
         },
@@ -198,6 +210,110 @@
     }
   },
   {
+    "type": "dict_key_value_pair",
+    "named": true,
+    "fields": {
+      "dict_key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "unquoted_atom",
+            "named": true
+          }
+        ]
+      },
+      "dict_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "compound_term",
+            "named": true
+          },
+          {
+            "type": "curly_braced_term",
+            "named": true
+          },
+          {
+            "type": "dict_literal",
+            "named": true
+          },
+          {
+            "type": "list_literal",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "operator_term",
+            "named": true
+          },
+          {
+            "type": "parenthesized_term",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "dict_literal",
+    "named": true,
+    "fields": {
+      "keys_values": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "dict_key_value_pair",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "tag": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "directive",
     "named": true,
     "fields": {},
@@ -215,6 +331,10 @@
         },
         {
           "type": "curly_braced_term",
+          "named": true
+        },
+        {
+          "type": "dict_literal",
           "named": true
         },
         {
@@ -288,6 +408,10 @@
           "named": true
         },
         {
+          "type": "dict_literal",
+          "named": true
+        },
+        {
           "type": "list_literal",
           "named": true
         },
@@ -345,6 +469,10 @@
             "named": true
           },
           {
+            "type": "dict_literal",
+            "named": true
+          },
+          {
             "type": "list_literal",
             "named": true
           },
@@ -397,6 +525,10 @@
             "named": true
           },
           {
+            "type": "dict_literal",
+            "named": true
+          },
+          {
             "type": "list_literal",
             "named": true
           },
@@ -442,6 +574,10 @@
         },
         {
           "type": "curly_braced_term",
+          "named": true
+        },
+        {
+          "type": "dict_literal",
           "named": true
         },
         {
@@ -547,6 +683,10 @@
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
     "named": false
   },
   {
