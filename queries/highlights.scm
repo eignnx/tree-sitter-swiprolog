@@ -42,11 +42,6 @@
                             (#any-of? @keyword.function
                                 ":-" "-->" "==>" "<=>")))
 
-((operator) @punctuation.delimiter
-            (#set! priority 110)
-            (#any-of? @punctuation.delimiter
-             "," ";" "|"))
-
 ((graphic_char_atom) @keyword.exception
                      (#set! priority 110)
                      (#any-of? @keyword.exception
@@ -57,6 +52,11 @@
             (#any-of? @keyword.exception
              "->" "\\+" "\\=" "=.."))
 
+((operator) @punctuation.delimiter
+            (#set! priority 110)
+            (#any-of? @punctuation.delimiter
+             "," ";" "|"))
+
 (compound_term
   functor: (atom ((unquoted_atom) @keyword.exception
                             (#set! priority 110)
@@ -65,4 +65,14 @@
                              "assertz" "retract" "retractall" "abolish" "read"
                              "once" "memberchk" "term_variables"
                              "read_term_from_aotm" "random" "date" "shell"))))
+
+(dict_literal
+  tag: ((_) @constructor (#set! priority 111))
+  "{" @punctuation.delimiter
+  "," @punctuation.delimiter
+  "}" @punctuation.delimiter)
+
+(dict_key_value_pair
+  dict_key: ((_) @property (#set! priority 111))
+  ":" @punctuation.delimiter)
 
