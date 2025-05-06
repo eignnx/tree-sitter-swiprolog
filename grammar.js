@@ -10,6 +10,10 @@
 module.exports = grammar({
   name: "swiprolog",
 
+  externals: $ => [
+    $.read_term_end_token,
+  ],
+
   rules: {
     source_file: $ => repeat(choice(
       $.directive,
@@ -19,10 +23,13 @@ module.exports = grammar({
     directive: $ => seq(
       ":-",
       $._term,
-      ".",
+      $.read_term_end_token,
     ),
 
-    clause: $ => seq($._term, "."),
+    clause: $ => seq(
+      $._term,
+      $.read_term_end_token,
+    ),
 
     _term: $ => choice(
       $._restricted_operators_term,

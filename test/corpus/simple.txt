@@ -7,7 +7,8 @@ fact.
 (source_file
   (clause
     (atom
-      (unquoted_atom))))
+      (unquoted_atom))
+    (read_term_end_token)))
 
 ===
 Atomic Directive
@@ -18,7 +19,8 @@ Atomic Directive
 (source_file
   (directive
     (atom
-      (unquoted_atom))))
+      (unquoted_atom))
+    (read_term_end_token)))
 
 ===
 Atom with Underscore
@@ -29,7 +31,8 @@ my_fact.
 (source_file
   (clause
     (atom
-      (unquoted_atom))))
+      (unquoted_atom))
+    (read_term_end_token)))
 
 ===
 Directive with space
@@ -40,7 +43,8 @@ Directive with space
 (source_file
   (directive
     (atom
-      (unquoted_atom))))
+      (unquoted_atom))
+    (read_term_end_token)))
 
 ===
 Quoted atom
@@ -52,7 +56,8 @@ Quoted atom
   (clause
     (atom
       (quoted_atom
-        (single_quoted_content)))))
+        (single_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Quoted format string
@@ -66,7 +71,8 @@ Quoted format string
       (quoted_atom
         (single_quoted_content)
         (format_string_placeholder)
-        (single_quoted_content)))))
+        (single_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Quoted atom with character escape
@@ -80,7 +86,8 @@ Quoted atom with character escape
       (quoted_atom
         (single_quoted_content)
         (single_quoted_character_escape)
-        (single_quoted_content)))))
+        (single_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Quoted atom with character escape and format string placeholder
@@ -96,7 +103,8 @@ Quoted atom with character escape and format string placeholder
         (single_quoted_character_escape)
         (single_quoted_content)
         (format_string_placeholder)
-        (single_quoted_content)))))
+        (single_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Double quoted string
@@ -108,7 +116,8 @@ Double quoted string
   (clause
     (string
       (double_quoted_string
-        (double_quoted_content)))))
+        (double_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Double quoted string with character escape
@@ -122,7 +131,8 @@ Double quoted string with character escape
       (double_quoted_string
         (double_quoted_content)
         (double_quoted_character_escape)
-        (double_quoted_content)))))
+        (double_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Double quoted string with escaped double quote
@@ -136,7 +146,8 @@ Double quoted string with escaped double quote
       (double_quoted_string
         (double_quoted_content)
         (double_quoted_character_escape)
-        (double_quoted_content)))))
+        (double_quoted_content)))
+    (read_term_end_token)))
 
 ===
 Simple compound term
@@ -150,7 +161,8 @@ compound(term).
       (atom
         (unquoted_atom))
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 Quoted functor compound term
@@ -165,7 +177,8 @@ Quoted functor compound term
         (quoted_atom
           (single_quoted_content)))
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 Variable - single letter
@@ -178,7 +191,8 @@ anything(X).
     (compound_term
       (atom
         (unquoted_atom))
-      (variable))))
+      (variable))
+    (read_term_end_token)))
 
 ===
 Variable - underscore
@@ -191,7 +205,8 @@ anything(_).
     (compound_term
       (atom
         (unquoted_atom))
-      (variable))))
+      (variable))
+    (read_term_end_token)))
 
 ===
 Variable - multi-letter
@@ -204,7 +219,8 @@ anything(Asdf).
     (compound_term
       (atom
         (unquoted_atom))
-      (variable))))
+      (variable))
+    (read_term_end_token)))
 
 ===
 Variable - all kinds of characters
@@ -217,7 +233,8 @@ anything(QWerty43_51X).
     (compound_term
       (atom
         (unquoted_atom))
-      (variable))))
+      (variable))
+    (read_term_end_token)))
 
 ===
 Multiple arguments in compound term
@@ -232,7 +249,8 @@ append(A, B, C).
         (unquoted_atom))
       (variable)
       (variable)
-      (variable))))
+      (variable))
+    (read_term_end_token)))
 
 ===
 List - empty
@@ -242,7 +260,8 @@ List - empty
 
 (source_file
   (clause
-    (list_literal)))
+    (list_literal)
+    (read_term_end_token)))
 
 ===
 List - one item
@@ -254,7 +273,8 @@ List - one item
   (clause
     (list_literal
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 List - two items
@@ -268,7 +288,8 @@ List - two items
       (atom
         (unquoted_atom))
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 List - simple cons
@@ -282,7 +303,8 @@ List - simple cons
       (atom
         (unquoted_atom))
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 List - multi-item and cons
@@ -300,7 +322,8 @@ List - multi-item and cons
       (atom
         (unquoted_atom))
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 Number - decimal (no sign)
@@ -310,7 +333,8 @@ Number - decimal (no sign)
 
 (source_file
   (clause
-    (number)))
+    (number)
+    (read_term_end_token)))
 
 ===
 Number - decimal zero
@@ -320,7 +344,8 @@ Number - decimal zero
 
 (source_file
   (clause
-    (number)))
+    (number)
+    (read_term_end_token)))
 
 ===
 Number - signed zero
@@ -334,7 +359,8 @@ pair(-0, +0).
       (atom
         (unquoted_atom))
       (number)
-      (number))))
+      (number))
+    (read_term_end_token)))
 
 ===
 Number - decimal (signed)
@@ -348,7 +374,8 @@ pair(-345, +632).
       (atom
         (unquoted_atom))
       (number)
-      (number))))
+      (number))
+    (read_term_end_token)))
 
 ===
 Number - binary
@@ -358,7 +385,8 @@ Number - binary
 
 (source_file
   (clause
-    (number)))
+    (number)
+    (read_term_end_token)))
 
 ===
 Number - octal
@@ -368,7 +396,8 @@ Number - octal
 
 (source_file
   (clause
-    (number)))
+    (number)
+    (read_term_end_token)))
 
 ===
 Number - hexadecimal
@@ -378,7 +407,8 @@ Number - hexadecimal
 
 (source_file
   (clause
-    (number)))
+    (number)
+    (read_term_end_token)))
 
 ===
 Operator term - simple
@@ -393,7 +423,8 @@ a + b.
         (unquoted_atom))
       (operator)
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 Operator term - two operators
@@ -412,7 +443,8 @@ a + b * c.
           (unquoted_atom))
         (operator)
         (atom
-          (unquoted_atom))))))
+          (unquoted_atom))))
+    (read_term_end_token)))
 
 ===
 Operator term - multiple of same
@@ -435,7 +467,8 @@ a + b + b + c.
             (unquoted_atom))
           (operator)
           (atom
-            (unquoted_atom)))))))
+            (unquoted_atom)))))
+    (read_term_end_token)))
 
 ===
 Operator term - multi-character operator
@@ -450,7 +483,8 @@ a +--+ b.
         (unquoted_atom))
       (operator)
       (atom
-        (unquoted_atom)))))
+        (unquoted_atom)))
+    (read_term_end_token)))
 
 ===
 Operator term - operator in compound term
@@ -472,7 +506,8 @@ thing(A + B, 1 - 2).
           (operator_term
             (number)
             (operator)
-            (number)))))))
+            (number)))))
+    (read_term_end_token)))
 
 ===
 Operator term - operator in list
@@ -492,7 +527,8 @@ Operator term - operator in list
           (operator_term
             (number)
             (operator)
-            (number)))))))
+            (number)))))
+    (read_term_end_token)))
 
 ===
 Append
@@ -509,7 +545,8 @@ append([X|Xs], Ys, [X|XsYs]) :-
         (unquoted_atom))
       (list_literal)
       (variable)
-      (variable)))
+      (variable))
+    (read_term_end_token))
   (clause
     (operator_term
       (compound_term
@@ -528,7 +565,8 @@ append([X|Xs], Ys, [X|XsYs]) :-
           (unquoted_atom))
         (variable)
         (variable)
-        (variable)))))
+        (variable)))
+    (read_term_end_token)))
 
 ===
 Parenthesized
@@ -543,7 +581,8 @@ blah( (x) ).
         (unquoted_atom))
       (parenthesized_term
         (atom
-          (unquoted_atom))))))
+          (unquoted_atom))))
+    (read_term_end_token)))
 
 ===
 Curly Braced Term
@@ -560,4 +599,5 @@ Curly Braced Term
         (operator_term
           (number)
           (operator)
-          (number))))))
+          (number))))
+    (read_term_end_token)))

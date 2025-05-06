@@ -30,8 +30,8 @@
           "name": "_term"
         },
         {
-          "type": "STRING",
-          "value": "."
+          "type": "SYMBOL",
+          "name": "read_term_end_token"
         }
       ]
     },
@@ -43,8 +43,8 @@
           "name": "_term"
         },
         {
-          "type": "STRING",
-          "value": "."
+          "type": "SYMBOL",
+          "name": "read_term_end_token"
         }
       ]
     },
@@ -705,7 +705,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "read_term_end_token"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}

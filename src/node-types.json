@@ -50,8 +50,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "atom",
@@ -83,6 +83,10 @@
         },
         {
           "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "read_term_end_token",
           "named": true
         },
         {
@@ -318,8 +322,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "atom",
@@ -351,6 +355,10 @@
         },
         {
           "type": "parenthesized_term",
+          "named": true
+        },
+        {
+          "type": "read_term_end_token",
           "named": true
         },
         {
@@ -682,10 +690,6 @@
     "named": false
   },
   {
-    "type": ".",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -727,6 +731,10 @@
   },
   {
     "type": "graphic_char_atom",
+    "named": true
+  },
+  {
+    "type": "read_term_end_token",
     "named": true
   },
   {

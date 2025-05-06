@@ -1,0 +1,26 @@
+===
+Period - ends a read term
+===
+asdf.
+---
+
+(source_file
+  (clause
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Period - dot operator works
+===
+MyDict.my_key.
+---
+
+(source_file
+  (clause
+    (operator_term
+      (variable)
+      (operator)
+      (atom
+        (unquoted_atom)))
+    (read_term_end_token)))

@@ -21,6 +21,7 @@ emit_heading(PeanoLevel, FString, FParams) :-
     format('~n~s ~w~n~n', [Hashes, Content]),
 end.
 
+my_pred(qwer{asdf: 1}, Dict) :- Dict.asdf.
 
 emit_table_header(ColSpecs) :-
     maplist([Spec, Name, Align]>>(
