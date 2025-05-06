@@ -37,6 +37,12 @@
      ]
 )
 
+(directive
+  (":-" @keyword.function))
+
+(clause
+  (read_term_end_token) @punctuation.delimiter)
+
 (operator_term operator: ((operator) @keyword.function
                             (#set! priority 110)
                             (#any-of? @keyword.function
@@ -76,3 +82,10 @@
   dict_key: ((_) @property (#set! priority 111))
   ":" @punctuation.delimiter)
 
+(operator_term
+  operator: ((operator) @_op
+                        (#eq? @_op "."))
+  right: ((atom) @property
+                 (#set! priority 111)))
+
+(eol_comment) @comment

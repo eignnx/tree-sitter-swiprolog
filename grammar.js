@@ -10,6 +10,11 @@
 module.exports = grammar({
   name: "swiprolog",
 
+  extras: $ => [
+    /\s+/,
+    $.eol_comment,
+  ],
+
   externals: $ => [
     $.read_term_end_token,
   ],
@@ -180,6 +185,8 @@ module.exports = grammar({
       $.unquoted_atom,
       $.quoted_atom,
     ),
+
+    eol_comment: $ => /%.*/,
   },
 });
 

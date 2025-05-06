@@ -1,0 +1,37 @@
+===
+No comments
+===
+asdf.
+---
+
+(source_file
+  (clause
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+EOL comment - no space
+===
+asdf.%asdf
+---
+
+(source_file
+  (clause
+    (atom
+      (unquoted_atom))
+    (read_term_end_token))
+  (eol_comment))
+
+===
+EOL comment - space
+===
+asdf. %asdf
+---
+
+(source_file
+  (clause
+    (atom
+      (unquoted_atom))
+    (read_term_end_token))
+  (eol_comment))

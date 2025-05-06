@@ -726,6 +726,11 @@
     "named": true
   },
   {
+    "type": "eol_comment",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "format_string_placeholder",
     "named": true
   },

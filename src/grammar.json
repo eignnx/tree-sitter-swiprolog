@@ -695,12 +695,20 @@
           "name": "quoted_atom"
         }
       ]
+    },
+    "eol_comment": {
+      "type": "PATTERN",
+      "value": "%.*"
     }
   },
   "extras": [
     {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "\\s+"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "eol_comment"
     }
   ],
   "conflicts": [],

@@ -21,9 +21,10 @@ emit_heading(PeanoLevel, FString, FParams) :-
     format('~n~s ~w~n~n', [Hashes, Content]),
 end.
 
+% Here's a comment!
 my_pred(qwer{asdf: 1}, Dict) :- Dict.asdf.
 
-emit_table_header(ColSpecs) :-
+emit_table_header(ColSpecs) :- % EOL comment!
     maplist([Spec, Name, Align]>>(
         Spec = center(Name)  -> Align = ':---:'
         ; Spec = left(Name)  -> Align = ':----'
