@@ -683,9 +683,9 @@ static const TSCharacterRange sym_format_string_placeholder_character_set_4[] = 
   {'~', '~'},
 };
 
-static const TSCharacterRange sym_graphic_char_atom_character_set_1[] = {
-  {'!', '!'}, {'#', '$'}, {'&', '&'}, {'*', '+'}, {'-', '-'}, {'/', '/'}, {':', ':'}, {'<', '@'},
-  {'^', '^'}, {'~', '~'},
+static const TSCharacterRange sym__non_comma_operator_character_set_1[] = {
+  {'#', '$'}, {'&', '&'}, {'*', '+'}, {'-', '/'}, {':', ':'}, {'<', '@'}, {'\\', '\\'}, {'^', '^'},
+  {'~', '~'},
 };
 
 static bool ts_lex(TSLexer *lexer, TSStateId state) {
@@ -788,7 +788,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (('#' <= lookahead && lookahead <= '&') ||
           ('*' <= lookahead && lookahead <= '/') ||
           (':' <= lookahead && lookahead <= '@') ||
-          lookahead == '^' ||
+          ('\\' <= lookahead && lookahead <= '^') ||
           lookahead == '~') ADVANCE(59);
       END_STATE();
     case 5:
@@ -938,9 +938,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 23:
       ACCEPT_TOKEN(anon_sym_COLON_DASH);
-      if ((set_contains(sym_graphic_char_atom_character_set_1, 10, lookahead) ||
-          lookahead == '.') &&
-          lookahead != '!') ADVANCE(37);
+      if ((set_contains(sym__non_comma_operator_character_set_1, 9, lookahead)) &&
+          lookahead != '\\') ADVANCE(37);
       END_STATE();
     case 24:
       ACCEPT_TOKEN(anon_sym_LPAREN);
@@ -997,9 +996,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 35:
       ACCEPT_TOKEN(sym_graphic_char_atom);
       if (lookahead == '-') ADVANCE(23);
-      if ((set_contains(sym_graphic_char_atom_character_set_1, 10, lookahead) ||
-          lookahead == '.') &&
-          lookahead != '!') ADVANCE(37);
+      if ((set_contains(sym__non_comma_operator_character_set_1, 9, lookahead)) &&
+          lookahead != '\\') ADVANCE(37);
       END_STATE();
     case 36:
       ACCEPT_TOKEN(sym_graphic_char_atom);
@@ -1017,9 +1015,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 37:
       ACCEPT_TOKEN(sym_graphic_char_atom);
-      if ((set_contains(sym_graphic_char_atom_character_set_1, 10, lookahead) ||
-          lookahead == '.') &&
-          lookahead != '!') ADVANCE(37);
+      if ((set_contains(sym__non_comma_operator_character_set_1, 9, lookahead)) &&
+          lookahead != '\\') ADVANCE(37);
       END_STATE();
     case 38:
       ACCEPT_TOKEN(aux_sym_double_quoted_string_token1);
@@ -1133,9 +1130,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 59:
       ACCEPT_TOKEN(sym__non_comma_operator);
-      if ((set_contains(sym_graphic_char_atom_character_set_1, 10, lookahead) ||
-          lookahead == '.') &&
-          lookahead != '!') ADVANCE(59);
+      if (set_contains(sym__non_comma_operator_character_set_1, 9, lookahead)) ADVANCE(59);
       END_STATE();
     case 60:
       ACCEPT_TOKEN(anon_sym_LBRACE);

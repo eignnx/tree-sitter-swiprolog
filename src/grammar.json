@@ -555,7 +555,7 @@
     },
     "_non_comma_operator": {
       "type": "PATTERN",
-      "value": "[-+*/\\^<>=~:.?@#$&]+"
+      "value": "[-+*/\\\\^<>=~:.?@#$&]+"
     },
     "parenthesized_term": {
       "type": "SEQ",

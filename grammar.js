@@ -165,7 +165,7 @@ module.exports = grammar({
       ",",
       ";",
     ),
-    _non_comma_operator: $ => /[-+*/\^<>=~:.?@#$&]+/,
+    _non_comma_operator: $ => /[-+*/\\^<>=~:.?@#$&]+/,
 
     parenthesized_term: $ => seq("(", $._term, ")"),
     curly_braced_term: $ => seq("{", $._term, "}"),
