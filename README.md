@@ -1,6 +1,7 @@
 # tree-sitter-swiprolog
+An opinionated clean-slate rewrite of `tree-sitter-prolog` with the aim of supporting the language extensions provided by SWI-Prolog (dictionary literals, quasi-quotation, rational number literals) and enhancing common Prolog language features (highlighting format string placeholders, highlighting clause head predicates).
 
-## Features
+## Feature Progress
 - [X] format string placeholders
     - [X] in double quoted strings (`format("xxx~pxxx", [123])`)
     - [X] in backtick quoted strings (``format(`xxx~pxxx`, [123])``)
@@ -25,4 +26,8 @@
     - [X] infix operators
     - [ ] postfix operators
 - [ ] quasi-quotation syntax (`{|html(Name, Address)||<tr><td>Name</td>Address</tr>|}`)
-
+- [ ] character literals (`0'a`)
+- [ ] character literal escape sequence (`0'\x3F`)
+- [X] integer literals (decimal, binary, octal, hex)
+- [ ] float literals
+- [ ] rational number literals (`5r3`)
