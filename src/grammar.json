@@ -5,37 +5,11 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "directive"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "clause"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "read_term"
       }
     },
-    "directive": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": ":-"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_term"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "read_term_end_token"
-        }
-      ]
-    },
-    "clause": {
+    "read_term": {
       "type": "SEQ",
       "members": [
         {
@@ -66,10 +40,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "atom"
-        },
-        {
-          "type": "SYMBOL",
           "name": "string"
         },
         {
@@ -82,14 +52,26 @@
         },
         {
           "type": "SYMBOL",
+          "name": "prefix_operator_term"
+        },
+        {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "atom"
+          }
+        },
+        {
+          "type": "SYMBOL",
           "name": "number"
         },
         {
           "type": "PREC",
-          "value": 5,
+          "value": 10,
           "content": {
             "type": "SYMBOL",
-            "name": "operator_term"
+            "name": "binop_term"
           }
         },
         {
@@ -171,10 +153,23 @@
           "name": "quoted_atom"
         },
         {
-          "type": "SYMBOL",
-          "name": "graphic_char_atom"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "graphic_char_atom"
+            },
+            {
+              "type": "STRING",
+              "value": "!"
+            }
+          ]
         }
       ]
+    },
+    "graphic_char_atom": {
+      "type": "PATTERN",
+      "value": "[-+*/\\\\^<>=~:.?@#$&]+"
     },
     "unquoted_atom": {
       "type": "PATTERN",
@@ -278,10 +273,6 @@
     "single_quoted_content": {
       "type": "PATTERN",
       "value": "[^\\\\~']+"
-    },
-    "graphic_char_atom": {
-      "type": "PATTERN",
-      "value": "!|[-+*/\\^<>=~:?@#$&][-+*/\\^<>=~:.?@#$&]*"
     },
     "string": {
       "type": "CHOICE",
@@ -503,7 +494,7 @@
         }
       ]
     },
-    "operator_term": {
+    "binop_term": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -541,7 +532,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_non_comma_operator"
+          "name": "non_comma_operator"
         },
         {
           "type": "STRING",
@@ -553,9 +544,34 @@
         }
       ]
     },
-    "_non_comma_operator": {
+    "non_comma_operator": {
       "type": "PATTERN",
       "value": "[-+*/\\\\^<>=~:.?@#$&]+"
+    },
+    "prefix_operator_term": {
+      "type": "PREC",
+      "value": 100,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "SYMBOL",
+              "name": "non_comma_operator"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operand",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_term"
+            }
+          }
+        ]
+      }
     },
     "parenthesized_term": {
       "type": "SEQ",
@@ -711,7 +727,12 @@
       "name": "eol_comment"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "non_comma_operator",
+      "graphic_char_atom"
+    ]
+  ],
   "precedences": [],
   "externals": [
     {

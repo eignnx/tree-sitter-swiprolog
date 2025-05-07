@@ -18,8 +18,8 @@
 
 (format_string_placeholder) @punctuation.special
 
-(clause
-  (operator_term
+(read_term
+  (binop_term
     left: [
         (compound_term functor: ((_) @function) (#set! priority 110))
         (((atom) @function) (#set! priority 110))
@@ -30,20 +30,22 @@
                )
     ))
 
-(clause
+(read_term
     [
         (((atom) @function) (#set! priority 110))
         (compound_term functor: ((_) @function) (#set! priority 110))
      ]
 )
 
-(directive
-  (":-" @keyword.function))
+(read_term
+  (prefix_operator_term
+    operator: ((non_comma_operator) @keyword.function
+               (#set! priority 110)
+               (#eq? @keyword.function ":-"))))
 
-(clause
-  (read_term_end_token) @punctuation.delimiter)
+(read_term_end_token) @punctuation.delimiter
 
-(operator_term operator: ((operator) @keyword.function
+(binop_term operator: ((operator) @keyword.function
                             (#set! priority 110)
                             (#any-of? @keyword.function
                                 ":-" "-->" "==>" "<=>")))
@@ -56,7 +58,13 @@
 ((operator) @keyword.exception
             (#set! priority 110)
             (#any-of? @keyword.exception
-             "->" "\\+" "\\=" "=.."))
+             "->" "\\=" "=.."))
+(prefix_operator_term
+  operator: (non_comma_operator) @keyword.exception
+    (#set! priority 110)
+    (#any-of? @keyword.exception "\\+"))
+
+
 
 ((operator) @punctuation.delimiter
             (#set! priority 110)
@@ -82,10 +90,13 @@
   dict_key: ((_) @property (#set! priority 111))
   ":" @punctuation.delimiter)
 
-(operator_term
+(binop_term
   operator: ((operator) @_op
                         (#eq? @_op "."))
   right: ((atom) @property
                  (#set! priority 111)))
+
+(prefix_operator_term
+  operator: (non_comma_operator) @operator)
 
 (eol_comment) @comment

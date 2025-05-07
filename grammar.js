@@ -15,23 +15,18 @@ module.exports = grammar({
     $.eol_comment,
   ],
 
+  conflicts: $ => [
+    [$.non_comma_operator, $.graphic_char_atom]
+  ],
+
   externals: $ => [
     $.read_term_end_token,
   ],
 
   rules: {
-    source_file: $ => repeat(choice(
-      $.directive,
-      $.clause,
-    )),
+    source_file: $ => repeat($.read_term),
 
-    directive: $ => seq(
-      ":-",
-      $._term,
-      $.read_term_end_token,
-    ),
-
-    clause: $ => seq(
+    read_term: $ => seq(
       $._term,
       $.read_term_end_token,
     ),
@@ -42,12 +37,13 @@ module.exports = grammar({
 
     _restricted_operators_term: $ => choice(
       $.compound_term,
-      $.atom,
       $.string,
       $.variable,
       $.list_literal,
+      $.prefix_operator_term,
+      prec(1, $.atom),
       $.number,
-      prec(5, $.operator_term),
+      prec(10, $.binop_term),
       $.parenthesized_term,
       $.curly_braced_term,
       $.dict_literal,
@@ -64,12 +60,16 @@ module.exports = grammar({
         ")",
     )),
 
-
     atom: $ => choice(
       $.unquoted_atom,
       $.quoted_atom,
-      $.graphic_char_atom,
+      choice(
+        $.graphic_char_atom,
+        "!",
+      ),
     ),
+
+    graphic_char_atom: $ => /[-+*/\\^<>=~:.?@#$&]+/,
 
     unquoted_atom: $ => /[a-z][a-zA-Z_]*/,
 
@@ -99,8 +99,6 @@ module.exports = grammar({
 
     single_quoted_character_escape: $ => /\\[nrtv\\']/,
     single_quoted_content: $ => /[^\\~']+/,
-
-    graphic_char_atom: $ => /!|[-+*/\^<>=~:?@#$&][-+*/\^<>=~:.?@#$&]*/,
 
     string: $ => choice(
       $.double_quoted_string,
@@ -154,18 +152,23 @@ module.exports = grammar({
       /[-+]?0/,
     ),
 
-    operator_term: $ => prec.right(seq(
+    binop_term: $ => prec.right(seq(
       field("left", $._term),
       field("operator", $.operator),
       field("right", $._term),
     )),
 
     operator: $ => choice(
-      $._non_comma_operator,
+      $.non_comma_operator,
       ",",
       ";",
     ),
-    _non_comma_operator: $ => /[-+*/\\^<>=~:.?@#$&]+/,
+    non_comma_operator: $ => /[-+*/\\^<>=~:.?@#$&]+/,
+
+    prefix_operator_term: $ => prec(100, seq(
+      field("operator", $.non_comma_operator),
+      field("operand", $._term),
+    )),
 
     parenthesized_term: $ => seq("(", $._term, ")"),
     curly_braced_term: $ => seq("{", $._term, "}"),

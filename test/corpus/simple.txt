@@ -5,7 +5,7 @@ fact.
 ---
 
 (source_file
-  (clause
+  (read_term
     (atom
       (unquoted_atom))
     (read_term_end_token)))
@@ -17,9 +17,11 @@ Atomic Directive
 ---
 
 (source_file
-  (directive
-    (atom
-      (unquoted_atom))
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (atom
+        (unquoted_atom)))
     (read_term_end_token)))
 
 ===
@@ -29,7 +31,7 @@ my_fact.
 ---
 
 (source_file
-  (clause
+  (read_term
     (atom
       (unquoted_atom))
     (read_term_end_token)))
@@ -41,9 +43,11 @@ Directive with space
 ---
 
 (source_file
-  (directive
-    (atom
-      (unquoted_atom))
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (atom
+        (unquoted_atom)))
     (read_term_end_token)))
 
 ===
@@ -53,7 +57,7 @@ Quoted atom
 ---
 
 (source_file
-  (clause
+  (read_term
     (atom
       (quoted_atom
         (single_quoted_content)))
@@ -66,7 +70,7 @@ Quoted format string
 ---
 
 (source_file
-  (clause
+  (read_term
     (atom
       (quoted_atom
         (single_quoted_content)
@@ -81,7 +85,7 @@ Quoted atom with character escape
 ---
 
 (source_file
-  (clause
+  (read_term
     (atom
       (quoted_atom
         (single_quoted_content)
@@ -96,14 +100,16 @@ Quoted atom with character escape and format string placeholder
 ---
 
 (source_file
-  (directive
-    (atom
-      (quoted_atom
-        (single_quoted_content)
-        (single_quoted_character_escape)
-        (single_quoted_content)
-        (format_string_placeholder)
-        (single_quoted_content)))
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (atom
+        (quoted_atom
+          (single_quoted_content)
+          (single_quoted_character_escape)
+          (single_quoted_content)
+          (format_string_placeholder)
+          (single_quoted_content))))
     (read_term_end_token)))
 
 ===
@@ -113,7 +119,7 @@ Double quoted string
 ---
 
 (source_file
-  (clause
+  (read_term
     (string
       (double_quoted_string
         (double_quoted_content)))
@@ -126,7 +132,7 @@ Double quoted string with character escape
 ---
 
 (source_file
-  (clause
+  (read_term
     (string
       (double_quoted_string
         (double_quoted_content)
@@ -141,7 +147,7 @@ Double quoted string with escaped double quote
 ---
 
 (source_file
-  (clause
+  (read_term
     (string
       (double_quoted_string
         (double_quoted_content)
@@ -156,7 +162,7 @@ compound(term).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -171,7 +177,7 @@ Quoted functor compound term
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (quoted_atom
@@ -187,7 +193,7 @@ anything(X).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -201,7 +207,7 @@ anything(_).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -215,7 +221,7 @@ anything(Asdf).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -229,7 +235,7 @@ anything(QWerty43_51X).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -243,7 +249,7 @@ append(A, B, C).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -259,7 +265,7 @@ List - empty
 ---
 
 (source_file
-  (clause
+  (read_term
     (list_literal)
     (read_term_end_token)))
 
@@ -270,7 +276,7 @@ List - one item
 ---
 
 (source_file
-  (clause
+  (read_term
     (list_literal
       (atom
         (unquoted_atom)))
@@ -283,7 +289,7 @@ List - two items
 ---
 
 (source_file
-  (clause
+  (read_term
     (list_literal
       (atom
         (unquoted_atom))
@@ -298,7 +304,7 @@ List - simple cons
 ---
 
 (source_file
-  (clause
+  (read_term
     (list_literal
       (atom
         (unquoted_atom))
@@ -313,7 +319,7 @@ List - multi-item and cons
 ---
 
 (source_file
-  (clause
+  (read_term
     (list_literal
       (atom
         (unquoted_atom))
@@ -332,7 +338,7 @@ Number - decimal (no sign)
 ---
 
 (source_file
-  (clause
+  (read_term
     (number)
     (read_term_end_token)))
 
@@ -343,7 +349,7 @@ Number - decimal zero
 ---
 
 (source_file
-  (clause
+  (read_term
     (number)
     (read_term_end_token)))
 
@@ -354,7 +360,7 @@ pair(-0, +0).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -369,7 +375,7 @@ pair(-345, +632).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -384,7 +390,7 @@ Number - binary
 ---
 
 (source_file
-  (clause
+  (read_term
     (number)
     (read_term_end_token)))
 
@@ -395,7 +401,7 @@ Number - octal
 ---
 
 (source_file
-  (clause
+  (read_term
     (number)
     (read_term_end_token)))
 
@@ -406,7 +412,7 @@ Number - hexadecimal
 ---
 
 (source_file
-  (clause
+  (read_term
     (number)
     (read_term_end_token)))
 
@@ -417,11 +423,12 @@ a + b.
 ---
 
 (source_file
-  (clause
-    (operator_term
+  (read_term
+    (binop_term
       (atom
         (unquoted_atom))
-      (operator)
+      (operator
+        (non_comma_operator))
       (atom
         (unquoted_atom)))
     (read_term_end_token)))
@@ -433,15 +440,17 @@ a + b * c.
 ---
 
 (source_file
-  (clause
-    (operator_term
+  (read_term
+    (binop_term
       (atom
         (unquoted_atom))
-      (operator)
-      (operator_term
+      (operator
+        (non_comma_operator))
+      (binop_term
         (atom
           (unquoted_atom))
-        (operator)
+        (operator
+          (non_comma_operator))
         (atom
           (unquoted_atom))))
     (read_term_end_token)))
@@ -453,19 +462,22 @@ a + b + b + c.
 ---
 
 (source_file
-  (clause
-    (operator_term
+  (read_term
+    (binop_term
       (atom
         (unquoted_atom))
-      (operator)
-      (operator_term
+      (operator
+        (non_comma_operator))
+      (binop_term
         (atom
           (unquoted_atom))
-        (operator)
-        (operator_term
+        (operator
+          (non_comma_operator))
+        (binop_term
           (atom
             (unquoted_atom))
-          (operator)
+          (operator
+            (non_comma_operator))
           (atom
             (unquoted_atom)))))
     (read_term_end_token)))
@@ -477,11 +489,12 @@ a +--+ b.
 ---
 
 (source_file
-  (clause
-    (operator_term
+  (read_term
+    (binop_term
       (atom
         (unquoted_atom))
-      (operator)
+      (operator
+        (non_comma_operator))
       (atom
         (unquoted_atom)))
     (read_term_end_token)))
@@ -493,19 +506,21 @@ thing(A + B, 1 - 2).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
-      (operator_term
+      (binop_term
         (variable)
-        (operator)
-        (operator_term
+        (operator
+          (non_comma_operator))
+        (binop_term
           (variable)
           (operator)
-          (operator_term
+          (binop_term
             (number)
-            (operator)
+            (operator
+              (non_comma_operator))
             (number)))))
     (read_term_end_token)))
 
@@ -516,17 +531,19 @@ Operator term - operator in list
 ---
 
 (source_file
-  (clause
+  (read_term
     (list_literal
-      (operator_term
+      (binop_term
         (variable)
-        (operator)
-        (operator_term
+        (operator
+          (non_comma_operator))
+        (binop_term
           (variable)
           (operator)
-          (operator_term
+          (binop_term
             (number)
-            (operator)
+            (operator
+              (non_comma_operator))
             (number)))))
     (read_term_end_token)))
 
@@ -539,7 +556,7 @@ append([X|Xs], Ys, [X|XsYs]) :-
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -547,8 +564,8 @@ append([X|Xs], Ys, [X|XsYs]) :-
       (variable)
       (variable))
     (read_term_end_token))
-  (clause
-    (operator_term
+  (read_term
+    (binop_term
       (compound_term
         (atom
           (unquoted_atom))
@@ -559,7 +576,8 @@ append([X|Xs], Ys, [X|XsYs]) :-
         (list_literal
           (variable)
           (variable)))
-      (operator)
+      (operator
+        (non_comma_operator))
       (compound_term
         (atom
           (unquoted_atom))
@@ -575,7 +593,7 @@ blah( (x) ).
 ---
 
 (source_file
-  (clause
+  (read_term
     (compound_term
       (atom
         (unquoted_atom))
@@ -591,12 +609,12 @@ Curly Braced Term
 ---
 
 (source_file
-  (clause
+  (read_term
     (curly_braced_term
-      (operator_term
+      (binop_term
         (number)
         (operator)
-        (operator_term
+        (binop_term
           (number)
           (operator)
           (number))))

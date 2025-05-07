@@ -5,7 +5,7 @@ asdf.
 ---
 
 (source_file
-  (clause
+  (read_term
     (atom
       (unquoted_atom))
     (read_term_end_token)))
@@ -17,10 +17,64 @@ MyDict.my_key.
 ---
 
 (source_file
-  (clause
-    (operator_term
+  (read_term
+    (binop_term
       (variable)
-      (operator)
+      (operator
+        (non_comma_operator))
+      (atom
+        (unquoted_atom)))
+    (read_term_end_token)))
+
+===
+Prefix - pound sign
+===
+#X.
+---
+
+(source_file
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (variable))
+    (read_term_end_token)))
+
+===
+Prefix - minus sign
+===
+-X.
+---
+
+(source_file
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (variable))
+    (read_term_end_token)))
+
+===
+Prefix - multi-char
+===
+@@@X.
+---
+
+(source_file
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (variable))
+    (read_term_end_token)))
+
+===
+Prefix - directive
+===
+:- true.
+---
+
+(source_file
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
       (atom
         (unquoted_atom)))
     (read_term_end_token)))
