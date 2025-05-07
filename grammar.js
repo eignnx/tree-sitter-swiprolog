@@ -174,7 +174,7 @@ module.exports = grammar({
     curly_braced_term: $ => seq("{", $._term, "}"),
 
     dict_literal: $ => seq(
-      field("tag", $.atom),
+      field("tag", choice($.atom, $.variable)),
       field("keys_values", delimited_comma_sep("{", $.dict_key_value_pair, "}")),
     ),
 

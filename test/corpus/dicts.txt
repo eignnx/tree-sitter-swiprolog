@@ -1,0 +1,180 @@
+===
+Empty
+===
+asdf{}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (atom
+        (unquoted_atom)))
+    (read_term_end_token)))
+
+===
+Singleton
+===
+asdf{a:b}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (atom
+        (unquoted_atom))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))
+
+===
+Singleton - spaced out
+===
+asdf{ a: b }.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (atom
+        (unquoted_atom))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))
+
+===
+Multiple pairs
+===
+tag{a: 123, b: 456, c: 789}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (atom
+        (unquoted_atom))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (number))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (number))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (number)))
+    (read_term_end_token)))
+
+===
+Quoted key
+===
+tag{'key': value}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (atom
+        (unquoted_atom))
+      (dict_key_value_pair
+        (quoted_atom
+          (single_quoted_content))
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))
+
+===
+Quoted tag
+===
+'tag'{key: value}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (atom
+        (quoted_atom
+          (single_quoted_content)))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))
+
+===
+Anonymous tag - empty
+===
+_{}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (variable))
+    (read_term_end_token)))
+
+===
+Anonymous tag - singleton
+===
+_{ key: value }.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (variable)
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))
+
+===
+Variable tag - empty
+===
+SomeTag{}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (variable))
+    (read_term_end_token)))
+
+===
+Variable tag - singleton
+===
+SomeTag{x: y}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (variable)
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))
+
+===
+Variable tag - multiple pairs
+===
+SomeTag{x: y, z: w}.
+---
+
+(source_file
+  (read_term
+    (dict_literal
+      (variable)
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom)))
+      (dict_key_value_pair
+        (unquoted_atom)
+        (atom
+          (unquoted_atom))))
+    (read_term_end_token)))

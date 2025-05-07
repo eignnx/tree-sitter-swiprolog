@@ -78,3 +78,23 @@ Prefix - directive
       (atom
         (unquoted_atom)))
     (read_term_end_token)))
+
+===
+Prefix - not provable operator
+===
+a(X) :- \+ X.
+---
+
+(source_file
+  (read_term
+    (binop_term
+      (compound_term
+        (atom
+          (unquoted_atom))
+        (variable))
+      (operator
+        (non_comma_operator))
+      (prefix_operator_term
+        (non_comma_operator)
+        (variable)))
+    (read_term_end_token)))

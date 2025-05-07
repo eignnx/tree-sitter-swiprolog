@@ -385,6 +385,10 @@
           {
             "type": "atom",
             "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
           }
         ]
       }
