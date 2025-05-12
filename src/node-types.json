@@ -90,6 +90,10 @@
             "named": true
           },
           {
+            "type": "quasi_quotation",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -147,6 +151,10 @@
           },
           {
             "type": "prefix_operator_term",
+            "named": true
+          },
+          {
+            "type": "quasi_quotation",
             "named": true
           },
           {
@@ -217,6 +225,10 @@
           "named": true
         },
         {
+          "type": "quasi_quotation",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -269,6 +281,10 @@
         },
         {
           "type": "prefix_operator_term",
+          "named": true
+        },
+        {
+          "type": "quasi_quotation",
           "named": true
         },
         {
@@ -338,6 +354,10 @@
           },
           {
             "type": "prefix_operator_term",
+            "named": true
+          },
+          {
+            "type": "quasi_quotation",
             "named": true
           },
           {
@@ -467,6 +487,10 @@
           "named": true
         },
         {
+          "type": "quasi_quotation",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -547,6 +571,10 @@
           "named": true
         },
         {
+          "type": "quasi_quotation",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -602,6 +630,10 @@
             "named": true
           },
           {
+            "type": "quasi_quotation",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -621,6 +653,29 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "quasi_quotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "compound_term",
+          "named": true
+        },
+        {
+          "type": "quasi_quotation_body",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -688,6 +743,10 @@
         },
         {
           "type": "prefix_operator_term",
+          "named": true
+        },
+        {
+          "type": "quasi_quotation",
           "named": true
         },
         {
@@ -798,6 +857,10 @@
     "named": true
   },
   {
+    "type": "quasi_quotation_body",
+    "named": true
+  },
+  {
     "type": "read_term_end_token",
     "named": true
   },
@@ -822,7 +885,15 @@
     "named": false
   },
   {
+    "type": "{|",
+    "named": false
+  },
+  {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "||",
     "named": false
   },
   {

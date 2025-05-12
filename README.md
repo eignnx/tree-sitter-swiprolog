@@ -28,7 +28,7 @@ This is in-development, so currently it is not designed to work on `*.pl` files.
     - [X] prefix operators
     - [X] infix operators
     - [ ] postfix operators
-- [ ] quasi-quotation syntax (`{|html(Name, Address)||<tr><td>Name</td>Address</tr>|}`)
+- [X] quasi-quotation syntax (`{|html(Name, Address)||<tr><td>Name</td>Address</tr>|}`)
 - [ ] character literals (`0'a`)
 - [ ] character literal escape sequence (`0'\x3F`)
 - [X] integer literals (decimal, binary, octal, hex)

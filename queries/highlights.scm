@@ -100,3 +100,10 @@
   operator: (non_comma_operator) @operator)
 
 (eol_comment) @comment
+
+(quasi_quotation
+  "{|" @string
+  "||" @string
+  (quasi_quotation_body) @string)
+
+

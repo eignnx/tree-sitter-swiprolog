@@ -79,6 +79,14 @@
           "name": "parenthesized_term"
         },
         {
+          "type": "PREC",
+          "value": 50,
+          "content": {
+            "type": "SYMBOL",
+            "name": "quasi_quotation"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "curly_braced_term"
         },
@@ -724,6 +732,40 @@
     "eol_comment": {
       "type": "PATTERN",
       "value": "%.*"
+    },
+    "quasi_quotation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{|"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "atom"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "compound_term"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "||"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quasi_quotation_body"
+        }
+      ]
+    },
+    "quasi_quotation_body": {
+      "type": "PATTERN",
+      "value": "[\\s\\S]*?\\|\\}"
     }
   },
   "extras": [

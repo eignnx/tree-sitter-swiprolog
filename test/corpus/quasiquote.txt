@@ -1,0 +1,90 @@
+===
+Simple
+===
+x({|head||body|}).
+---
+
+(source_file
+  (read_term
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (quasi_quotation
+        (atom
+          (unquoted_atom))
+        (quasi_quotation_body)))
+    (read_term_end_token)))
+
+===
+Head Arguments
+===
+x({|head(1)||body|}).
+---
+
+(source_file
+  (read_term
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (quasi_quotation
+        (compound_term
+          (atom
+            (unquoted_atom))
+          (number))
+        (quasi_quotation_body)))
+    (read_term_end_token)))
+
+===
+Complex body 1
+===
+x({|asdf||<h1>Welcome!</h1>|}).
+---
+
+(source_file
+  (read_term
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (quasi_quotation
+        (atom
+          (unquoted_atom))
+        (quasi_quotation_body)))
+    (read_term_end_token)))
+
+===
+Complex body 2
+===
+x({|asdf||<h1>Welcome!</h1>This sentence contains spaces.|}).
+---
+
+(source_file
+  (read_term
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (quasi_quotation
+        (atom
+          (unquoted_atom))
+        (quasi_quotation_body)))
+    (read_term_end_token)))
+
+===
+Multi-line 1
+===
+x({|asdf||
+    Als dfjalkdjfjsdlk alkasd fds?
+    Rczl df, rpoina dsa kfj pd.
+    Vcx ogk ern pz!
+|}).
+---
+
+(source_file
+  (read_term
+    (compound_term
+      (atom
+        (unquoted_atom))
+      (quasi_quotation
+        (atom
+          (unquoted_atom))
+        (quasi_quotation_body)))
+    (read_term_end_token)))

@@ -20,3 +20,8 @@ append([], X, X).
 append([X|Xs], Ys, [X|XsYs]) :-
     append(Xs, Ys, XsYs).
 
+thing :-
+    {|html(X, Y)||<h1>Welcome!</h1>
+    <p>Here's some text.
+    </p>|}.
+

@@ -45,6 +45,7 @@ module.exports = grammar({
       $.number,
       prec(10, $.binop_term),
       $.parenthesized_term,
+      prec(50, $.quasi_quotation),
       $.curly_braced_term,
       $.dict_literal,
     ),
@@ -190,6 +191,15 @@ module.exports = grammar({
     ),
 
     eol_comment: $ => /%.*/,
+
+    quasi_quotation: $ => seq(
+      "{|",
+      choice($.atom, $.compound_term),
+      "||",
+      $.quasi_quotation_body,
+    ),
+
+    quasi_quotation_body: $ => /[\s\S]*?\|\}/,
   },
 });
 
