@@ -30,6 +30,11 @@ bool tree_sitter_swiprolog_external_scanner_scan(
   // Peek next character
   int32_t next = lexer->lookahead;
   if (next == 0 || next == ' ' || next == '\t' || next == '\n' || next == '\r' || next == '%') {
+    // NOTE:
+    // ?- true.%valid
+    // ?- true. %valid
+    // ?- true./*invalid*/
+    // ?- true. /*valid*/
     lexer->result_symbol = READ_TERM_END_TOKEN;
     return true;
   }
