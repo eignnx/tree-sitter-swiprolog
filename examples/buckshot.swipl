@@ -13,6 +13,9 @@ end.
 
 dcg(asdf) --> [].
 
+numbers :-
+    X = 1r2 + -3r5.
+
 0 <++> 0 :- Lhs = Rhs.
 Lhs <++> Rhs :- Lhs = Rhs.
 

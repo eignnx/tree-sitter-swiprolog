@@ -58,13 +58,13 @@ tag{a: 123, b: 456, c: 789}.
         (unquoted_atom))
       (dict_key_value_pair
         (unquoted_atom)
-        (number))
+        (integer))
       (dict_key_value_pair
         (unquoted_atom)
-        (number))
+        (integer))
       (dict_key_value_pair
         (unquoted_atom)
-        (number)))
+        (integer)))
     (read_term_end_token)))
 
 ===

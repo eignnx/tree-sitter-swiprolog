@@ -43,7 +43,8 @@ module.exports = grammar({
       $.list_literal,
       $.prefix_operator_term,
       prec(1, $.atom),
-      $.number,
+      $.integer,
+      $.rational,
       prec(10, $.binop_term),
       $.parenthesized_term,
       prec(50, $.quasi_quotation),
@@ -146,13 +147,15 @@ module.exports = grammar({
       ),
     )),
 
-    number: $ => choice(
+    integer: $ => choice(
       /0[xX][0-9a-fA-F]+/,
       /0b[01]+/,
       /0o[0-7]+/,
       /[-+]?[1-9][0-9]*/,
       /[-+]?0/,
     ),
+
+    rational: $ => /-?[0-9]+r[0-9]+/,
 
     binop_term: $ => prec.right(seq(
       field("left", $._term),

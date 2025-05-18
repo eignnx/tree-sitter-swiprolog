@@ -64,7 +64,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "number"
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rational"
         },
         {
           "type": "PREC",
@@ -477,7 +481,7 @@
         ]
       }
     },
-    "number": {
+    "integer": {
       "type": "CHOICE",
       "members": [
         {
@@ -501,6 +505,10 @@
           "value": "[-+]?0"
         }
       ]
+    },
+    "rational": {
+      "type": "PATTERN",
+      "value": "-?[0-9]+r[0-9]+"
     },
     "binop_term": {
       "type": "PREC_RIGHT",

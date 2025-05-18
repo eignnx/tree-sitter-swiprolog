@@ -74,11 +74,11 @@
             "named": true
           },
           {
-            "type": "list_literal",
+            "type": "integer",
             "named": true
           },
           {
-            "type": "number",
+            "type": "list_literal",
             "named": true
           },
           {
@@ -91,6 +91,10 @@
           },
           {
             "type": "quasi_quotation",
+            "named": true
+          },
+          {
+            "type": "rational",
             "named": true
           },
           {
@@ -138,11 +142,11 @@
             "named": true
           },
           {
-            "type": "list_literal",
+            "type": "integer",
             "named": true
           },
           {
-            "type": "number",
+            "type": "list_literal",
             "named": true
           },
           {
@@ -155,6 +159,10 @@
           },
           {
             "type": "quasi_quotation",
+            "named": true
+          },
+          {
+            "type": "rational",
             "named": true
           },
           {
@@ -209,11 +217,11 @@
           "named": true
         },
         {
-          "type": "list_literal",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "number",
+          "type": "list_literal",
           "named": true
         },
         {
@@ -226,6 +234,10 @@
         },
         {
           "type": "quasi_quotation",
+          "named": true
+        },
+        {
+          "type": "rational",
           "named": true
         },
         {
@@ -268,11 +280,11 @@
           "named": true
         },
         {
-          "type": "list_literal",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "number",
+          "type": "list_literal",
           "named": true
         },
         {
@@ -285,6 +297,10 @@
         },
         {
           "type": "quasi_quotation",
+          "named": true
+        },
+        {
+          "type": "rational",
           "named": true
         },
         {
@@ -341,11 +357,11 @@
             "named": true
           },
           {
-            "type": "list_literal",
+            "type": "integer",
             "named": true
           },
           {
-            "type": "number",
+            "type": "list_literal",
             "named": true
           },
           {
@@ -358,6 +374,10 @@
           },
           {
             "type": "quasi_quotation",
+            "named": true
+          },
+          {
+            "type": "rational",
             "named": true
           },
           {
@@ -443,6 +463,11 @@
     "fields": {}
   },
   {
+    "type": "integer",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "list_literal",
     "named": true,
     "fields": {},
@@ -471,11 +496,11 @@
           "named": true
         },
         {
-          "type": "list_literal",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "number",
+          "type": "list_literal",
           "named": true
         },
         {
@@ -491,6 +516,10 @@
           "named": true
         },
         {
+          "type": "rational",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -503,11 +532,6 @@
   },
   {
     "type": "non_comma_operator",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "number",
     "named": true,
     "fields": {}
   },
@@ -555,11 +579,11 @@
           "named": true
         },
         {
-          "type": "list_literal",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "number",
+          "type": "list_literal",
           "named": true
         },
         {
@@ -572,6 +596,10 @@
         },
         {
           "type": "quasi_quotation",
+          "named": true
+        },
+        {
+          "type": "rational",
           "named": true
         },
         {
@@ -614,11 +642,11 @@
             "named": true
           },
           {
-            "type": "list_literal",
+            "type": "integer",
             "named": true
           },
           {
-            "type": "number",
+            "type": "list_literal",
             "named": true
           },
           {
@@ -631,6 +659,10 @@
           },
           {
             "type": "quasi_quotation",
+            "named": true
+          },
+          {
+            "type": "rational",
             "named": true
           },
           {
@@ -737,11 +769,11 @@
           "named": true
         },
         {
-          "type": "list_literal",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "number",
+          "type": "list_literal",
           "named": true
         },
         {
@@ -754,6 +786,10 @@
         },
         {
           "type": "quasi_quotation",
+          "named": true
+        },
+        {
+          "type": "rational",
           "named": true
         },
         {
@@ -865,6 +901,10 @@
   },
   {
     "type": "quasi_quotation_body",
+    "named": true
+  },
+  {
+    "type": "rational",
     "named": true
   },
   {

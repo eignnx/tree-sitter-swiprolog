@@ -339,7 +339,7 @@ Number - decimal (no sign)
 
 (source_file
   (read_term
-    (number)
+    (integer)
     (read_term_end_token)))
 
 ===
@@ -350,7 +350,7 @@ Number - decimal zero
 
 (source_file
   (read_term
-    (number)
+    (integer)
     (read_term_end_token)))
 
 ===
@@ -364,8 +364,8 @@ pair(-0, +0).
     (compound_term
       (atom
         (unquoted_atom))
-      (number)
-      (number))
+      (integer)
+      (integer))
     (read_term_end_token)))
 
 ===
@@ -379,8 +379,8 @@ pair(-345, +632).
     (compound_term
       (atom
         (unquoted_atom))
-      (number)
-      (number))
+      (integer)
+      (integer))
     (read_term_end_token)))
 
 ===
@@ -391,7 +391,7 @@ Number - binary
 
 (source_file
   (read_term
-    (number)
+    (integer)
     (read_term_end_token)))
 
 ===
@@ -402,7 +402,7 @@ Number - octal
 
 (source_file
   (read_term
-    (number)
+    (integer)
     (read_term_end_token)))
 
 ===
@@ -413,7 +413,7 @@ Number - hexadecimal
 
 (source_file
   (read_term
-    (number)
+    (integer)
     (read_term_end_token)))
 
 ===
@@ -518,10 +518,10 @@ thing(A + B, 1 - 2).
           (variable)
           (operator)
           (binop_term
-            (number)
+            (integer)
             (operator
               (non_comma_operator))
-            (number)))))
+            (integer)))))
     (read_term_end_token)))
 
 ===
@@ -541,10 +541,10 @@ Operator term - operator in list
           (variable)
           (operator)
           (binop_term
-            (number)
+            (integer)
             (operator
               (non_comma_operator))
-            (number)))))
+            (integer)))))
     (read_term_end_token)))
 
 ===
@@ -612,10 +612,47 @@ Curly Braced Term
   (read_term
     (curly_braced_term
       (binop_term
-        (number)
+        (integer)
         (operator)
         (binop_term
-          (number)
+          (integer)
           (operator)
-          (number))))
+          (integer))))
     (read_term_end_token)))
+
+===
+Rational Numbers - simple
+===
+(1r1).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (rational))
+    (read_term_end_token)))
+
+===
+Rational Numbers - multi-digit
+===
+(123r123).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (rational))
+    (read_term_end_token)))
+
+===
+Rational Numbers - negative
+===
+(-11r9).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (rational))
+    (read_term_end_token)))
+

@@ -1,7 +1,8 @@
 (compound_term
   functor: (_) @constant)
 
-(number) @number
+(integer) @number
+(rational) @float
 (variable) @variable
 
 (operator) @operator

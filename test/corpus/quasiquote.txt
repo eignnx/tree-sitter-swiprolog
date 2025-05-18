@@ -30,7 +30,7 @@ x({|head(1)||body|}).
         (compound_term
           (atom
             (unquoted_atom))
-          (number))
+          (integer))
         (quasi_quotation_body)))
     (read_term_end_token)))
 

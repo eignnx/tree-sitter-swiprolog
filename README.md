@@ -34,7 +34,7 @@ This is in-development, so currently it is not designed to work on `*.pl` files.
 - [ ] character literal escape sequence (`0'\x3F`)
 - [X] integer literals (decimal, binary, octal, hex)
 - [ ] float literals
-- [ ] rational number literals (`5r3`)
+- [X] rational number literals (`5r3`)
 
 ## User Installation (Assumes you are an end-user and use Neovim with Packer)
 Paste the following into your `init.lua` (or wherever, as long as it's run at startup):
