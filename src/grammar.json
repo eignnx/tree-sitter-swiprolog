@@ -71,6 +71,10 @@
           "name": "rational"
         },
         {
+          "type": "SYMBOL",
+          "name": "float"
+        },
+        {
           "type": "PREC",
           "value": 10,
           "content": {
@@ -509,6 +513,10 @@
     "rational": {
       "type": "PATTERN",
       "value": "-?[0-9]+r[0-9]+"
+    },
+    "float": {
+      "type": "PATTERN",
+      "value": "[-+]?[0-9]*\\.[0-9]+([eE][-+]?[0-9]+)?"
     },
     "binop_term": {
       "type": "PREC_RIGHT",

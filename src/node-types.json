@@ -74,6 +74,10 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -139,6 +143,10 @@
           },
           {
             "type": "dict_literal",
+            "named": true
+          },
+          {
+            "type": "float",
             "named": true
           },
           {
@@ -217,6 +225,10 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -277,6 +289,10 @@
         },
         {
           "type": "dict_literal",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
@@ -354,6 +370,10 @@
           },
           {
             "type": "dict_literal",
+            "named": true
+          },
+          {
+            "type": "float",
             "named": true
           },
           {
@@ -496,6 +516,10 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -579,6 +603,10 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -639,6 +667,10 @@
           },
           {
             "type": "dict_literal",
+            "named": true
+          },
+          {
+            "type": "float",
             "named": true
           },
           {
@@ -769,6 +801,10 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -894,6 +930,10 @@
     "type": "eol_comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "float",
+    "named": true
   },
   {
     "type": "format_string_placeholder",

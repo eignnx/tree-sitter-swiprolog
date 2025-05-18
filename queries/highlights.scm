@@ -2,7 +2,9 @@
   functor: (_) @constant)
 
 (integer) @number
-(rational) @float
+(rational) @number
+(float) @number.float
+
 (variable) @variable
 
 (operator) @operator

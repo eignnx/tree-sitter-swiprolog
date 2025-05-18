@@ -656,3 +656,74 @@ Rational Numbers - negative
       (rational))
     (read_term_end_token)))
 
+===
+Floating Point - simple 1
+===
+(.123).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (float))
+    (read_term_end_token)))
+
+===
+Floating Point - simple 2
+===
+(123.123).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (float))
+    (read_term_end_token)))
+
+===
+Floating Point - negative sign
+===
+(-123.123).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (float))
+    (read_term_end_token)))
+
+===
+Floating Point - positive sign
+===
+(+123.123).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (float))
+    (read_term_end_token)))
+
+===
+Floating Point - exponent
+===
+(123.123e5).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (float))
+    (read_term_end_token)))
+
+===
+Floating Point - negative exponent
+===
+(123.123E-500).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (float))
+    (read_term_end_token)))

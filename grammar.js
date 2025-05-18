@@ -45,6 +45,7 @@ module.exports = grammar({
       prec(1, $.atom),
       $.integer,
       $.rational,
+      $.float,
       prec(10, $.binop_term),
       $.parenthesized_term,
       prec(50, $.quasi_quotation),
@@ -156,6 +157,8 @@ module.exports = grammar({
     ),
 
     rational: $ => /-?[0-9]+r[0-9]+/,
+
+    float: $ => /[-+]?[0-9]*\.[0-9]+([eE][-+]?[0-9]+)?/,
 
     binop_term: $ => prec.right(seq(
       field("left", $._term),
