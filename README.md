@@ -18,7 +18,7 @@ This is in-development, so currently it is not designed to work on `*.pl` files.
      `\+`, `var`, `=..`, `assertz`, etc.)
 - [X] text literals
     - [X] double quoted strings (`"asdf"`)
-    - [X] backtick quoted strings (``asdf``)
+    - [X] backtick quoted strings (`` `asdf` ``)
     - [X] single quoted atoms (`'asdf'`)
 - [X] character escapes in
     - [X] double quoted strings (`"asdf\nasdf"`)
