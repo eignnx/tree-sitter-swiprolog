@@ -741,31 +741,39 @@
           "value": "{|"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "atom"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "compound_term"
-            }
-          ]
+          "type": "FIELD",
+          "name": "syntax",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "atom"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "compound_term"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
           "value": "||"
         },
         {
-          "type": "SYMBOL",
-          "name": "quasi_quotation_body"
+          "type": "FIELD",
+          "name": "quotation",
+          "content": {
+            "type": "SYMBOL",
+            "name": "quasi_quotation_body"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "|}"
         }
       ]
-    },
-    "quasi_quotation_body": {
-      "type": "PATTERN",
-      "value": "[\\s\\S]*?\\|\\}"
     }
   },
   "extras": [
@@ -789,6 +797,10 @@
     {
       "type": "SYMBOL",
       "name": "read_term_end_token"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "quasi_quotation_body"
     }
   ],
   "inline": [],

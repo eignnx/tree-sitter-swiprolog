@@ -106,4 +106,10 @@
   "||" @string
   (quasi_quotation_body) @string)
 
+(quasi_quotation
+  (compound_term
+    functor: (atom) @_head
+             (#matches? @_head "html"))
+  (quasi_quotation_body) @injection.content
+                         (#set! injection.language "html"))
 

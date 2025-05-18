@@ -21,6 +21,7 @@ module.exports = grammar({
 
   externals: $ => [
     $.read_term_end_token,
+    $.quasi_quotation_body,
   ],
 
   rules: {
@@ -194,12 +195,12 @@ module.exports = grammar({
 
     quasi_quotation: $ => seq(
       "{|",
-      choice($.atom, $.compound_term),
+      field("syntax", choice($.atom, $.compound_term)),
       "||",
-      $.quasi_quotation_body,
+      field("quotation", $.quasi_quotation_body),
+      "|}",
     ),
 
-    quasi_quotation_body: $ => /[\s\S]*?\|\}/,
   },
 });
 

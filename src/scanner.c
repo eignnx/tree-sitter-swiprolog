@@ -6,55 +6,91 @@
 // READ_TERM_END_TOKEN in those cases.
 
 #include <tree_sitter/parser.h>
+#include "tree_sitter/alloc.h"
 
 enum TokenType {
   READ_TERM_END_TOKEN, // The `.` at the end of a read term.
+  QUASI_QUOTATION_BODY,
 };
 
-void *tree_sitter_swiprolog_external_scanner_create() { return NULL; }
+typedef struct {
+    char c_requires_non_empty_struct_so_here_we_are;
+} Scanner;
+
+Scanner *tree_sitter_swiprolog_external_scanner_create() {
+    Scanner *scanner = (Scanner *) ts_malloc(sizeof(Scanner));
+    return scanner;
+}
 
 bool tree_sitter_swiprolog_external_scanner_scan(
-  void *payload,
+  Scanner *scanner,
   TSLexer *lexer,
   const bool *valid_symbols
 ) {
-  // Only try when READ_TERM_END_TOKEN is expected
-  if (!valid_symbols[READ_TERM_END_TOKEN]) return false;
+    if (valid_symbols[READ_TERM_END_TOKEN] && lexer->lookahead == '.') {
+        // Consume '.'
+        lexer->advance(lexer, false);
 
-  // Check current character
-  if (lexer->lookahead != '.') return false;
+        switch (lexer->lookahead) {
+        case ' ':
+        case '\t':
+        case '\n':
+        case '\r':
+        case '%':
+            // NOTE:
+            // ?- true.%valid
+            // ?- true. %valid
+            // ?- true./*invalid*/
+            // ?- true. /*valid*/
+            lexer->result_symbol = READ_TERM_END_TOKEN;
+            return true;
+        default:
+            if (lexer->eof(lexer)) {
+                lexer->result_symbol = READ_TERM_END_TOKEN;
+                return true;
+            }
+        }
 
-  // Consume '.'
-  lexer->advance(lexer, false);
+    } else if (valid_symbols[QUASI_QUOTATION_BODY]) {
+        // printf("Possible quasi-quotation body:\n");
+        while (!lexer->eof(lexer)) {
+            while (lexer->lookahead != '|' && !lexer->eof(lexer)) {
+                // printf("%c", lexer->lookahead);
+                lexer->advance(lexer, false);
+                lexer->mark_end(lexer);
+            }
+            // Consume '|'
+            lexer->advance(lexer, false);
+            if (lexer->lookahead == '}') {
+                lexer->advance(lexer, false); // Consume `}`
+                lexer->result_symbol = QUASI_QUOTATION_BODY;
+                // printf("\nFOUND CLOSING `|}`\n");
+                return true;
+            }
+            // Must have been a single embedded `|`, but not the start of `|}`.
+            // Try again.
+            // printf("\nTrying again after encountering `|`...\n");
+        }
+    }
 
-  // Peek next character
-  int32_t next = lexer->lookahead;
-  if (next == 0 || next == ' ' || next == '\t' || next == '\n' || next == '\r' || next == '%') {
-    // NOTE:
-    // ?- true.%valid
-    // ?- true. %valid
-    // ?- true./*invalid*/
-    // ?- true. /*valid*/
-    lexer->result_symbol = READ_TERM_END_TOKEN;
-    return true;
-  }
-
-  // Not a terminator, rollback
+  // No match, rollback.
   return false;
 }
 
 unsigned tree_sitter_swiprolog_external_scanner_serialize(
-  void *payload,
-  char *buffer
+    Scanner *scanner,
+    char *buffer
 ) {
-  return 0;
+    return sizeof(Scanner);
 }
 
 void tree_sitter_swiprolog_external_scanner_deserialize(
-  void *payload,
+  Scanner *scanner,
   const char *buffer,
   unsigned length
-) {}
+) { }
 
-void tree_sitter_swiprolog_external_scanner_destroy(void *payload) {}
+void tree_sitter_swiprolog_external_scanner_destroy(Scanner *scanner) {
+    ts_free((void*) scanner);
+}
 
