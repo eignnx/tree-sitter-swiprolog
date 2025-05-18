@@ -12,11 +12,11 @@
 (double_quoted_string) @string
 (backtick_string) @string
 
-(single_quoted_character_escape) @punctuation.special
-(double_quoted_character_escape) @punctuation.special
-(backticked_character_escape) @punctuation.special
+(single_quoted_character_escape) @string.escape
+(double_quoted_character_escape) @string.escape
+(backticked_character_escape) @string.escape
 
-(format_string_placeholder) @punctuation.special
+(format_string_placeholder) @string.special
 
 (read_term
   (binop_term
@@ -50,10 +50,10 @@
                             (#any-of? @keyword.function
                                 ":-" "-->" "==>" "<=>")))
 
-((graphic_char_atom) @keyword.exception
+((atom) @keyword.exception
                      (#set! priority 110)
                      (#any-of? @keyword.exception
-                      "!" ))
+                      "!" "throw" "catch" ))
 
 ((operator) @keyword.exception
             (#set! priority 110)
@@ -102,14 +102,7 @@
 (eol_comment) @comment
 
 (quasi_quotation
-  "{|" @string
-  "||" @string
-  (quasi_quotation_body) @string)
-
-(quasi_quotation
-  (compound_term
-    functor: (atom) @_head
-             (#matches? @_head "html"))
-  (quasi_quotation_body) @injection.content
-                         (#set! injection.language "html"))
+  "{|" @punctuation.delimiter
+  "||" @punctuation.delimiter
+  "|}" @punctuation.delimiter)
 
