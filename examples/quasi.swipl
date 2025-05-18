@@ -29,7 +29,16 @@ languages(Content) :-
         }
         return 0;
     }
-    |}
+    |},
+
+
+    Z = {|rust||
+    fn main() -> ! {
+        let x = 123;
+        panic!();
+    }
+    |},
+
     true.
 
 html :-
