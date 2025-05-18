@@ -46,6 +46,7 @@ module.exports = grammar({
       $.integer,
       $.rational,
       $.float,
+      $.character_literal,
       prec(10, $.binop_term),
       $.parenthesized_term,
       prec(50, $.quasi_quotation),
@@ -149,16 +150,26 @@ module.exports = grammar({
     )),
 
     integer: $ => choice(
-      /0[xX][0-9a-fA-F]+/,
-      /0b[01]+/,
-      /0o[0-7]+/,
-      /[-+]?[1-9][0-9]*/,
+      /0[xX][0-9a-fA-F_]+/,
+      /0b[01_]+/,
+      /0o[0-7_]+/,
+      /[-+]?[1-9][0-9_]*/,
       /[-+]?0/,
     ),
 
     rational: $ => /-?[0-9]+r[0-9]+/,
 
     float: $ => /[-+]?[0-9]*\.[0-9]+([eE][-+]?[0-9]+)?/,
+
+    character_literal: $ => choice(
+      /0'[a-zA-Z0-9.!@#$%^&*();:"'<>,./?|~`]/,
+      /0'\\\\/, // Backslash itself
+      /0'\\[btnvfreda]/,
+      /0'\\[xX][0-9a-fA-F]{2}\\?/,
+      /0'\\u[0-9a-fA-F]{4}/,
+      /0'\\U[0-9a-fA-F]{8}/,
+      /0'\\[0-7]{1,3}/,
+    ),
 
     binop_term: $ => prec.right(seq(
       field("left", $._term),

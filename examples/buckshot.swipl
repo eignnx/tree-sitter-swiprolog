@@ -14,7 +14,8 @@ end.
 dcg(asdf) --> [].
 
 numbers :-
-    X = 1r2 + -3r5 + -2.421e-45 - .34.
+    X = 1r2 + -3r5 + -2.421e-45 - .34,
+    Y = 0's + 0'' + 0'$ + 0'Q + 0': + 0'\x2F\ + 0'\uBEEF.
 
 0 <++> 0 :- Lhs = Rhs.
 Lhs <++> Rhs :- Lhs = Rhs.

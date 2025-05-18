@@ -1,0 +1,99 @@
+===
+Alphabetic
+===
+0'a.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Numeric
+===
+0'3.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Graphic
+===
+(0'$).
+---
+
+(source_file
+  (read_term
+    (parenthesized_term
+      (character_literal))
+    (read_term_end_token)))
+
+===
+Newline
+===
+0'\n.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Hex Escape
+===
+0'\xAF.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Hex Escape - ISO
+===
+0'\xAF\.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Unicode Escape
+===
+0'\uABCD.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Unicode Escape - big
+===
+0'\Uabcdabcd.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
+
+===
+Octal Escape
+===
+0'\74.
+---
+
+(source_file
+  (read_term
+    (character_literal)
+    (read_term_end_token)))
