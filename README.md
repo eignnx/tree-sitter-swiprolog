@@ -29,6 +29,7 @@ This is in-development, so currently it is not designed to work on `*.pl` files.
     - [X] infix operators
     - [ ] postfix operators
 - [X] quasi-quotation syntax (`{|html(Name, Address)||<tr><td>Name</td>Address</tr>|}`)
+    - [X] Embedded language syntax highlighting (`{|html||<br>|}` highlights the `br` tag, `{|c||struct S {}|}` uses C syntax highlighting, etc.)
 - [ ] character literals (`0'a`)
 - [ ] character literal escape sequence (`0'\x3F`)
 - [X] integer literals (decimal, binary, octal, hex)
