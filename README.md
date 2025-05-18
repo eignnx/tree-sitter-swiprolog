@@ -1,9 +1,6 @@
 # tree-sitter-swiprolog
 An opinionated clean-slate rewrite of `tree-sitter-prolog` with the aim of supporting the language extensions provided by SWI-Prolog (dictionary literals, quasi-quotation, rational number literals) and enhancing common Prolog language features (highlighting format string placeholders, highlighting clause head predicates).
 
-## LIMITATIONS
-This is in-development, so currently it is not designed to work on `*.pl` files. Use the temporary `*.swipl` file extension to test it out.
-
 ## Feature Progress
 - [X] format string placeholders
     - [X] in double quoted strings (`format("xxx~pxxx", [123])`)
@@ -51,13 +48,13 @@ parser_config.swiprolog = {
     branch = "main",
     generate_requires_npm = false,
   },
-  filetype = "swipl",
+  filetype = "pl",
 }
 
-vim.treesitter.language.register('swiprolog', 'swipl')
+vim.treesitter.language.register('swiprolog', 'pl')
 vim.filetype.add({
   extension = {
-    swipl = 'swiprolog',
+    pl = 'swiprolog',
   }
 })
 ```
@@ -86,19 +83,19 @@ Next you (probably) need to copy over the query file. In this repo, download `qu
         -- branch = "main",
         generate_requires_npm = false,
     },
-    filetype = "swipl",
+    filetype = "pl",
     }
 
-    vim.treesitter.language.register('swiprolog', 'swipl')
+    vim.treesitter.language.register('swiprolog', 'pl')
     vim.filetype.add({
     extension = {
-        swipl = 'swiprolog',
+        pl = 'swiprolog',
     }
     })
     ```
 1. `cd` into your local copy of the repo and run `tree-sitter generate`
-1. Open neovim and run `:TSInstall swiprolog` (Make sure you don't have any `.swipl` files open in nvim or you may have trouble on Windows)
-1. Open a `.swipl` file and run `:TSEditQuery highlights`, then overwrite the contents with the contents of the highlights query file: `:read ~/tree-sitter-swipl/queries/highlights.scm`
+1. Open neovim and run `:TSInstall swiprolog` (Make sure you don't have any `.pl` files open in nvim or you may have trouble on Windows)
+1. Open a `.pl` file and run `:TSEditQuery highlights`, then overwrite the contents with the contents of the highlights query file: `:read ~/tree-sitter-swiprolog/queries/highlights.scm`
 1. You may need to restart nvim at this point but it should be installed.
 
 ### Making Changes and Updating Tree-sitter
@@ -107,7 +104,7 @@ Say you've made an edit to `grammar.js` and want to see the changes. First of al
 But assuming you want to update the highlighting itself, you'll need to do this:
 
 1. Run `tree-sitter generate` if you haven't after making your change.
-1. In neovim run `:TSUpdate swiprolog` (If on Windows, make sure you haven't opened any `.swipl` files or you may run into errors (like permission denied, file in use)).
-1. If you've made changes to `queries/highlights.scm`, they will not have been copied over into your runtime tree sitter config, so you'll (probably) need to copy those changes over (run `:TSEditQuery highlights` in a `.swipl` file, paste changes).
+1. In neovim run `:TSUpdate swiprolog` (If on Windows, make sure you haven't opened any `.pl` files or you may run into errors (like permission denied, file in use)).
+1. If you've made changes to `queries/highlights.scm`, they will not have been copied over into your runtime tree sitter config, so you'll (probably) need to copy those changes over (run `:TSEditQuery highlights` in a `.pl` file, paste changes).
 
 If anyone knows a more streamlined approach to all this, please let me know.
