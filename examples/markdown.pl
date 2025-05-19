@@ -9,6 +9,7 @@
 :- use_module(utils).
 :- use_module(library(dcg/basics)).
 :- use_module(library(dcg/high_order)).
+:- use_module(library(lists)).
 
 :- op(500, xfy, ++).
 

@@ -1,4 +1,11 @@
-:- module(buckshot).
+:- module(buckshot, [asdf/3, pred/1]).
+:- use_module(library(clpfd)).
+:- use_module(library(lists)).
+:- use_module(library(my_module)).
+:- op(300, fx, $).
+
+:- det(pred/1).
+:- discontiguous pred.
 
 pred(X) :- test(X).
 
@@ -7,6 +14,8 @@ pred(X) :- test(X).
 test :-
     asdf,
     format('a~tsdf~tas~`_tdf~*|', [123]),
+    X = 'looks like an atom and IS an atom',
+    'it looks like an atom but it\'s a functor'(asdf),
 end.
 
 end.
