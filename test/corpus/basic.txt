@@ -37,6 +37,18 @@ my_fact.
     (read_term_end_token)))
 
 ===
+Atom with numbers, capitals, underscores.
+===
+qwerTY_498zxcvb9__49nA.
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
 Directive with space
 ===
 :- thing.

@@ -76,7 +76,7 @@ module.exports = grammar({
 
     graphic_char_atom: $ => /[-+*/\\^<>=~:.?@#$&]+/,
 
-    unquoted_atom: $ => /[a-z][a-zA-Z_]*/,
+    unquoted_atom: $ => /[a-z][a-zA-Z0-9_]*/,
 
     quoted_atom: $ => seq(
       /'/,
