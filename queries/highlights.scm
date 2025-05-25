@@ -46,9 +46,9 @@
     operator: ((non_comma_operator) @_x
                (#eq? @_x ":-"))
     operand: (compound_term
-               functor: ((_) @attribute.builtin
+               functor: ((_) @function.macro
                              (#set! priority 150)
-                             (#any-of? @attribute.builtin
+                             (#any-of? @function.macro
                               "module" "use_module" "det" "op" "table" "mode" "compile_predicates"
                               "dynamic" "multifile" "discontiguous" "public" "mode" "non_terminal")))))
 (read_term
@@ -56,9 +56,9 @@
     operator: ((non_comma_operator) @_x
                (#eq? @_x ":-"))
     operand: (compound_term
-               functor: ((_) @attribute
+               functor: ((_) @function.macro
                              (#set! priority 150)
-                             (#not-any-of? @attribute
+                             (#not-any-of? @function.macro
                               "module" "use_module" "det" "op" "table" "mode" "compile_predicates"
                               "dynamic" "multifile" "discontiguous" "public" "mode" "non_terminal")))))
 
@@ -67,16 +67,24 @@
     operator: ((non_comma_operator) @_x
                (#eq? @_x ":-"))
     operand: (prefix_operator_term
-               operator: ((_) @attribute.builtin
+               operator: ((_) @function.macro
                              (#set! priority 150)
-                             (#any-of? @attribute.builtin
+                             (#any-of? @function.macro
                               "dynamic" "multifile" "discontiguous" "public" "mode" "non_terminal")))))
 (read_term
   (prefix_operator_term
     operator: ((non_comma_operator) @_x (#eq? @_x ":-"))
     operand: (compound_term
                functor: ((_) @_y (#eq? @_y "module"))
-               . (atom) @module)))
+               . ((atom) @module
+                         (#set! priority 150)))))
+(read_term
+  (prefix_operator_term
+    operator: ((non_comma_operator) @_x (#eq? @_x ":-"))
+    operand: (compound_term
+               functor: ((_) @_y (#eq? @_y "use_module"))
+               . ((atom) @module
+                         (#set! priority 150)))))
 
 (read_term
   (prefix_operator_term
@@ -109,6 +117,21 @@
 "settings" "statistics" "strings" "simplex" "solution_sequences" "tables"
 "terms" "thread" "thread_pool" "ugraphs" "url" "varnumbers" "yall"))))))
 
+(read_term
+  (prefix_operator_term
+    operator: ((non_comma_operator) @_x (#eq? @_x ":-"))
+    operand: (compound_term
+               functor: ((_) @_y (#eq? @_y "use_module"))
+               . [ (atom) @module
+
+                   (binop_term
+                     operator: (operator) @_op (#eq? @_op "/")) @module
+
+                   (compound_term
+                     functor: (_) @module
+                     (_) @module)
+                 ]  (#set! priority 105))))
+
 ;TODO: "dcg/basics" "dcg/high_order"
 
 
@@ -132,7 +155,7 @@
 ((operator) @keyword.exception
             (#set! priority 110)
             (#any-of? @keyword.exception
-             "->" "\\=" "=.."))
+             "->" "=.."))
 (prefix_operator_term
   operator: (non_comma_operator) @keyword.exception
     (#set! priority 110)
@@ -153,6 +176,12 @@
                              "assertz" "retract" "retractall" "abolish" "read"
                              "once" "memberchk" "term_variables"
                              "read_term_from_aotm" "random" "date" "shell"))))
+
+(binop_term
+  left: ((atom) @module (#set! priority 120))
+  operator: (operator ((non_comma_operator) @punctuation.delimiter
+                                            (#set! priority 120)
+                                            (#eq? @punctuation.delimiter ":"))))
 
 [ "[" "]" "{" "}" "(" ")" ] @punctuation.bracket
 
@@ -177,7 +206,10 @@
 (prefix_operator_term
   operator: (non_comma_operator) @operator)
 
-(eol_comment) @comment
+[
+ (eol_comment)
+ (multiline_comment)
+] @comment
 
 (quasi_quotation
   "{|" @punctuation.delimiter

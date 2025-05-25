@@ -786,6 +786,10 @@
       "type": "PATTERN",
       "value": "%.*"
     },
+    "multiline_comment": {
+      "type": "PATTERN",
+      "value": "\\/\\*([^*]|\\*[^/])*\\*\\/"
+    },
     "quasi_quotation": {
       "type": "SEQ",
       "members": [
@@ -837,6 +841,10 @@
     {
       "type": "SYMBOL",
       "name": "eol_comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "multiline_comment"
     }
   ],
   "conflicts": [

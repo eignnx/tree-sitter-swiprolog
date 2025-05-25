@@ -981,6 +981,11 @@
     "named": true
   },
   {
+    "type": "multiline_comment",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "quasi_quotation_body",
     "named": true
   },

@@ -13,6 +13,7 @@ module.exports = grammar({
   extras: $ => [
     /\s+/,
     $.eol_comment,
+    $.multiline_comment,
   ],
 
   conflicts: $ => [
@@ -209,6 +210,8 @@ module.exports = grammar({
     ),
 
     eol_comment: $ => /%.*/,
+
+    multiline_comment: $ => /\/\*([^*]|\*[^/])*\*\//,
 
     quasi_quotation: $ => seq(
       "{|",

@@ -35,3 +35,34 @@ asdf. %asdf
       (unquoted_atom))
     (read_term_end_token))
   (eol_comment))
+
+===
+Multiline comment - simple
+===
+/* asdf */
+x.
+---
+
+(source_file
+  (multiline_comment)
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Multiline comment - multi-line
+===
+/* Here's a comment
+   that spans
+   multiple
+   lines */
+x.
+---
+
+(source_file
+  (multiline_comment)
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
