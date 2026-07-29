@@ -193,7 +193,7 @@
     },
     "unquoted_atom": {
       "type": "PATTERN",
-      "value": "[a-z][a-zA-Z0-9_]*"
+      "value": "\\p{XID_Start}\\p{XID_Continue}*"
     },
     "quoted_atom": {
       "type": "SEQ",
