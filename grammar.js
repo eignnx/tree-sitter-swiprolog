@@ -2,6 +2,8 @@
  * @file Prolog syntax aimed at SWI Prolog
  * @author eignnx <eignnx@gmail.com>
  * @license MIT
+ *
+ * Lexical analysis definitions: https://www.swi-prolog.org/pldoc/man?section=syntax
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
@@ -33,17 +35,15 @@ module.exports = grammar({
       $.read_term_end_token,
     ),
 
-    _term: $ => choice(
-      $._restricted_operators_term,
-    ),
+    _term: $ => $._restricted_operators_term,
 
     _restricted_operators_term: $ => choice(
       $.compound_term,
       $.string,
-      $.variable,
+      prec(1, $.variable),
       $.list_literal,
       $.prefix_operator_term,
-      prec(1, $.atom),
+      prec(2, $.atom),
       $.integer,
       $.rational,
       $.float,
@@ -77,7 +77,9 @@ module.exports = grammar({
 
     graphic_char_atom: $ => /[-+*/\\^<>=~:.?@#$&]+/,
 
-    unquoted_atom: $ => /\p{XID_Start}\p{XID_Continue}*/,
+    variable: $ => /[\p{Lu}_][\p{XID_Continue}¹²³⁰-⁹₀-₉]*/v,
+
+    unquoted_atom: $ => /[\p{XID_Start}--\p{Lu}--_][\p{XID_Continue}¹²³⁰-⁹₀-₉]*/v,
 
     quoted_atom: $ => seq(
       /'/,
@@ -103,7 +105,7 @@ module.exports = grammar({
       )
     )),
 
-    single_quoted_character_escape: $ => /\\[nrtv\\']/,
+    single_quoted_character_escape: $ => /\\[nrtvc\\']/,
     single_quoted_content: $ => /[^\\~']+/,
 
     string: $ => choice(
@@ -136,8 +138,6 @@ module.exports = grammar({
     ),
     backticked_character_escape: $ => /\\[nrtv\\`]/,
     backticked_content: $ => /[^\\~`]+/,
-
-    variable: $ => /[_A-Z][a-zA-Z0-9_]*/,
 
     list_literal: $ => prec(100, choice(
       seq("[", "]"),
@@ -178,12 +178,17 @@ module.exports = grammar({
       field("right", $._term),
     )),
 
+    // Ascii chars "glue" together into compound operators, but these other
+    // general unicode characters are read as single-character operators.
     operator: $ => choice(
       $.non_comma_operator,
       ",",
       ";",
     ),
-    non_comma_operator: $ => /[-+*/\\^<>=~:.?@#$&]+/,
+    non_comma_operator: $ => choice(
+      /[-+*/\\^<>=~:.?@#$&]+/,
+      /[\p{Sm}\p{Sc}\p{Sk}\p{So}\p{Pc}\p{Pd}\p{Po}]/v
+    ),
 
     prefix_operator_term: $ => prec(100, seq(
       field("operator", $.non_comma_operator),

@@ -23,13 +23,8 @@
       ]
     },
     "_term": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_restricted_operators_term"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "_restricted_operators_term"
     },
     "_restricted_operators_term": {
       "type": "CHOICE",
@@ -43,8 +38,12 @@
           "name": "string"
         },
         {
-          "type": "SYMBOL",
-          "name": "variable"
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
         },
         {
           "type": "SYMBOL",
@@ -56,7 +55,7 @@
         },
         {
           "type": "PREC",
-          "value": 1,
+          "value": 2,
           "content": {
             "type": "SYMBOL",
             "name": "atom"
@@ -191,9 +190,15 @@
       "type": "PATTERN",
       "value": "[-+*/\\\\^<>=~:.?@#$&]+"
     },
+    "variable": {
+      "type": "PATTERN",
+      "value": "[\\p{Lu}_][\\p{XID_Continue}¹²³⁰-⁹₀-₉]*",
+      "flags": "v"
+    },
     "unquoted_atom": {
       "type": "PATTERN",
-      "value": "\\p{XID_Start}\\p{XID_Continue}*"
+      "value": "[\\p{XID_Start}--\\p{Lu}--_][\\p{XID_Continue}¹²³⁰-⁹₀-₉]*",
+      "flags": "v"
     },
     "quoted_atom": {
       "type": "SEQ",
@@ -288,7 +293,7 @@
     },
     "single_quoted_character_escape": {
       "type": "PATTERN",
-      "value": "\\\\[nrtv\\\\']"
+      "value": "\\\\[nrtvc\\\\']"
     },
     "single_quoted_content": {
       "type": "PATTERN",
@@ -396,10 +401,6 @@
     "backticked_content": {
       "type": "PATTERN",
       "value": "[^\\\\~`]+"
-    },
-    "variable": {
-      "type": "PATTERN",
-      "value": "[_A-Z][a-zA-Z0-9_]*"
     },
     "list_literal": {
       "type": "PREC",
@@ -606,8 +607,18 @@
       ]
     },
     "non_comma_operator": {
-      "type": "PATTERN",
-      "value": "[-+*/\\\\^<>=~:.?@#$&]+"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[-+*/\\\\^<>=~:.?@#$&]+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[\\p{Sm}\\p{Sc}\\p{Sk}\\p{So}\\p{Pc}\\p{Pd}\\p{Po}]",
+          "flags": "v"
+        }
+      ]
     },
     "prefix_operator_term": {
       "type": "PREC",

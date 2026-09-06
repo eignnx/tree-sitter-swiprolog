@@ -1,0 +1,147 @@
+===
+Single-character atom
+===
+a.
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Single-character variable
+===
+A.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Multi-character atom
+===
+asdf.
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Multi-character variable
+===
+Asdf.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Multi-character atom with underscore
+===
+asdf_qwerty.
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Multi-character variable with underscore
+===
+Asdf_qwerty.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Underscore variable
+===
+_.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Underscore multi-character variable
+===
+_asdf.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Unicode character atom: Greek
+===
+μήλο.
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Unicode character atom: Chinese
+===
+苹果.
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token)))
+
+===
+Unicode character variable: Greek
+===
+Πτεροδάκτυλος.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Unicode character variable: subscript
+===
+V₉₅.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
+
+===
+Unicode character variable: superscript
+===
+X³⁷.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))

@@ -98,3 +98,28 @@ a(X) :- \+ X.
         (non_comma_operator)
         (variable)))
     (read_term_end_token)))
+
+===
+General unicode single-char operators
+===
+€123.
+67 ≤ 23·3.
+---
+
+(source_file
+  (read_term
+    (prefix_operator_term
+      (non_comma_operator)
+      (integer))
+    (read_term_end_token))
+  (read_term
+    (binop_term
+      (integer)
+      (operator
+        (non_comma_operator))
+      (binop_term
+        (integer)
+        (operator
+          (non_comma_operator))
+        (integer)))
+    (read_term_end_token)))
