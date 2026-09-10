@@ -615,7 +615,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "[\\p{Sm}\\p{Sc}\\p{Sk}\\p{So}\\p{Pc}\\p{Pd}\\p{Po}]",
+          "value": "[[\\p{Sm}\\p{Sc}\\p{Sk}\\p{So}\\p{Pc}\\p{Pd}\\p{Po}]--[%_]]",
           "flags": "v"
         }
       ]
@@ -799,7 +799,7 @@
     },
     "multiline_comment": {
       "type": "PATTERN",
-      "value": "\\/\\*([^*]|\\*[^/])*\\*\\/"
+      "value": "\\/\\*([^*]|\\*[^/])*(\\*\\/)?"
     },
     "quasi_quotation": {
       "type": "SEQ",

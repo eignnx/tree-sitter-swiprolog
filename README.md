@@ -32,6 +32,15 @@ An opinionated clean-slate rewrite of `tree-sitter-prolog` with the aim of suppo
 - [X] integer literals (decimal, binary, octal, hex)
 - [X] float literals
 - [X] rational number literals (`5r3`)
+- [X] Comments
+    - [X] End-of-line comments
+    - [X] Multiline comments, including un-closed
+- [ ] [SWI's extended Unicode support](https://www.swi-prolog.org/pldoc/man?section=syntax#sec:unicodesyntax)
+    - [X] Atoms like `苹果`, and `μήλο`
+    - [X] Variables like `Πτεροδάκτυλος`, `V₉₅`, `X³⁷`, and `_变量`
+    - [X] Operators like `€`, `≤`, and `·` (defined by Unicode character class, not a hard-coded list).
+    - [ ] Extended bracket syntax like `⟦x^2⟧ = '⟦⟧'(x^2)`
+    - [ ] Extended quote mark syntax like `«Les chaînes!» = '«»'("Les chaînes!")`
 
 ## User Installation (Assumes you are an end-user and use Neovim with Packer)
 Paste the following into your `init.lua` (or wherever, as long as it's run at startup):

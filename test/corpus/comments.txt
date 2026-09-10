@@ -66,3 +66,33 @@ x.
     (atom
       (unquoted_atom))
     (read_term_end_token)))
+
+===
+EOL comment - percent then newline is a valid comment
+===
+
+asdf. %
+
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token))
+  (eol_comment))
+
+===
+Multiline comment - missing end matches rest of file
+===
+asdf.
+/* Sure hope I don't forget to close this comment...
+   Ha, like that would ever happen!
+---
+
+(source_file
+  (read_term
+    (atom
+      (unquoted_atom))
+    (read_term_end_token))
+  (multiline_comment))

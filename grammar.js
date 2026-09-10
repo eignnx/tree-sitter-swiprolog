@@ -187,7 +187,29 @@ module.exports = grammar({
     ),
     non_comma_operator: $ => choice(
       /[-+*/\\^<>=~:.?@#$&]+/,
-      /[\p{Sm}\p{Sc}\p{Sk}\p{So}\p{Pc}\p{Pd}\p{Po}]/v
+      // Sm = Math symbols:
+      //   > Mathematical symbols (e.g., +, −, =, ×, ÷, √, ∊, ≠). Does not
+      //   > include parentheses and brackets, which are in categories Ps and
+      //   > Pe. Also does not include !, *, -, or /, which despite frequent
+      //   > use as mathematical operators, are primarily considered to be
+      //   > "punctuation".
+      // Sc = Currency symbols
+      // Sk = Modifier symbol
+      // So = Other symbols
+      //
+      // Pc = Connector punctuation
+      //   > Includes spacing underscore characters such as "_", and other
+      //   > spacing tie characters. Unlike other punctuation characters, these
+      //   > may be classified as "word" characters by regular expression
+      //   > libraries.
+      // Pd = Dash punctuation
+      //   > Includes several hyphen characters
+      // Po = Other punctuation
+      //
+      // Note: `%` is never seen as part of an operator.
+      // Note: I'm assuming underscore `_` should not be included here as a 
+      //       standalone operator (`X = (a _ b).` does not parse).
+      /[[\p{Sm}\p{Sc}\p{Sk}\p{So}\p{Pc}\p{Pd}\p{Po}]--[%_]]/v
     ),
 
     prefix_operator_term: $ => prec(100, seq(
@@ -216,7 +238,7 @@ module.exports = grammar({
 
     eol_comment: $ => /%.*/,
 
-    multiline_comment: $ => /\/\*([^*]|\*[^/])*\*\//,
+    multiline_comment: $ => /\/\*([^*]|\*[^/])*(\*\/)?/,
 
     quasi_quotation: $ => seq(
       "{|",

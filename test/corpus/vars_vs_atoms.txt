@@ -145,3 +145,14 @@ X³⁷.
   (read_term
     (variable)
     (read_term_end_token)))
+
+===
+Unicode character variable: Chinese
+===
+_变量.
+---
+
+(source_file
+  (read_term
+    (variable)
+    (read_term_end_token)))
