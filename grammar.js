@@ -1,7 +1,7 @@
 /**
- * @file Prolog syntax aimed at SWI Prolog
+ * @file Tree Sitter grammar for Prolog syntax, specifically SWI Prolog
  * @author eignnx <eignnx@gmail.com>
- * @license MIT
+ * @license AGPL-3.0-or-later
  *
  * Lexical analysis definitions: https://www.swi-prolog.org/pldoc/man?section=syntax
  */
