@@ -23,7 +23,9 @@ An opinionated clean-slate rewrite of `tree-sitter-prolog` with the aim of suppo
     - [X] single quoted atoms (`'asdf\nasdf'`)
 - [ ] operators
     - [X] prefix operators
-    - [X] infix operators
+    - [ ] infix operators
+        - [X] graphic character infix operators (`a ++ b`, `1 ? 3`)
+        - [ ] atom infix operators (`123 xor 567`)
     - [ ] postfix operators
 - [X] quasi-quotation syntax (`{|html(Name, Address)||<tr><td>Name</td>Address</tr>|}`)
     - [X] Embedded language syntax highlighting (`{|html||<br>|}` highlights the `br` tag, `{|c||struct S {}|}` uses C syntax highlighting, etc.)
@@ -41,6 +43,9 @@ An opinionated clean-slate rewrite of `tree-sitter-prolog` with the aim of suppo
     - [X] Operators like `€`, `≤`, and `·` (defined by Unicode character class, not a hard-coded list).
     - [ ] Extended bracket syntax like `⟦x^2⟧ = '⟦⟧'(x^2)`
     - [ ] Extended quote mark syntax like `«Les chaînes!» = '«»'("Les chaînes!")`
+- [ ] Parse error identification and highlighting
+    - [ ] MISSING
+    - [ ] ERROR
 
 ## User Installation (Assumes you are an end-user and use Neovim with Packer)
 Paste the following into your `init.lua` (or wherever, as long as it's run at startup):

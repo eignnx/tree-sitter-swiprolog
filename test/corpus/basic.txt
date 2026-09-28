@@ -522,18 +522,14 @@ thing(A + B, 1 - 2).
     (compound_term
       (atom
         (unquoted_atom))
-      (binop_term
+      (restricted_binop_term
         (variable)
-        (operator
-          (non_comma_operator))
-        (binop_term
-          (variable)
-          (operator)
-          (binop_term
-            (integer)
-            (operator
-              (non_comma_operator))
-            (integer)))))
+        (non_comma_operator)
+        (variable))
+      (restricted_binop_term
+        (integer)
+        (non_comma_operator)
+        (integer)))
     (read_term_end_token)))
 
 ===
@@ -545,18 +541,14 @@ Operator term - operator in list
 (source_file
   (read_term
     (list_literal
-      (binop_term
+      (restricted_binop_term
         (variable)
-        (operator
-          (non_comma_operator))
-        (binop_term
-          (variable)
-          (operator)
-          (binop_term
-            (integer)
-            (operator
-              (non_comma_operator))
-            (integer)))))
+        (non_comma_operator)
+        (variable))
+      (restricted_binop_term
+        (integer)
+        (non_comma_operator)
+        (integer)))
     (read_term_end_token)))
 
 ===

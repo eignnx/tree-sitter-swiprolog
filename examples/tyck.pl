@@ -18,23 +18,32 @@
 :- op(250, yfx, \).
 
 :- use_module(library(clpfd)).
-:- use_module(isa).
+:- use_module(isa, [
+    pred1/1,
+    pred2/2,
+    pred3/3
+]).
 :- use_module(derive).
 :- use_module(sem).
 
+% Comment
+my_mod:my_pred :- asdf.
 
 'incompatible bit sizes'(instruction(Instr), Error) :-
     sem:instr_info(Instr, Info),
     isa:fmt_instr(Fmt, Instr),
     derive:fmt_opcodebits_immbits(Fmt, _, ImmBits),
     sem:syntax_operands(Info.syntax, Operands),
+    !,
     maplist(
         {ImmBits}/[Op, OpName-OpTy]>>operand_immbits_name_type(Op, ImmBits, OpName, OpTy),
         Operands,
         Tcx
     ),
+    ( var(X) -> a ; b ),
     catch(
         (
+            once(thingy(123r3)),
             \+ stmt_inference(Tcx, Info.sem, _TcxOut),
             Error = stmt(Info.sem)
         ),
@@ -64,6 +73,8 @@ inference(_Tcx, #Term, Ty) :-
         Constant = Term,
         sem:def(#Constant, N),
         integer_inference(N, Ty)
+    ; var(Term) ->
+        throw(error(dont_use_a_var), _)
     ).
 
 integer_inference(N, Ty) :-
@@ -71,9 +82,9 @@ integer_inference(N, Ty) :-
     ord_inference(Ordering, Ty, N).
 
 
-ord_inference(>, u\Bits, N) :- 2 ^ #Bits #> #N.
+ord_inference(>, u\Bits, N) :- 2.0 ^ #Bits #> #N.
 ord_inference(>, s\Bits, N) :- 2 ^ (#Bits - 1) #> #N.
-ord_inference(>, i\Bits, N) :- 2 ^ #Bits #> #N.
+ord_inference(>, i\Bits, N) :- 2r1 ^ #Bits #> #N.
 ord_inference(<, s\Bits, N) :- -1 * 2 ^ (#Bits - 1) #< #N.
 ord_inference(<, i\Bits, N) :- -1 * 2 ^ (#Bits - 1) #< #N.
 ord_inference(=, u\Bits, 0) :- Bits in 1 .. sup.
@@ -179,13 +190,13 @@ inference(Tcx, compare(A, RelOp, B), i\1) :-
     ; throw(error('failure to infer `compare` operand'(A)))
     ),
     ( TyA = Ty -> true
-    ; throw(error('`compare` operand type doesn''t match operator type'(compare(A\TyA, RelOp, B\TyB))))
+    ; throw(error('`compare` operand type doesn\'t match operator type'(compare(A\TyA, RelOp, B\TyB))))
     ),
     ( inference(Tcx, B, TyB) -> true
     ; throw(error('failure to infer `compare` operand'(B)))
     ),
     ( TyB = Ty -> true
-    ; throw(error('`compare` operand type doesn''t match operator type'(compare(A\TyA, RelOp, B\TyB))))
+    ; throw(error('`compare` operand type doesn\'t match operator type'(compare(A\TyA, RelOp, B\TyB))))
     ).
 
 relop(<(Ty), Ty) :- int_ty(Ty).
@@ -197,7 +208,7 @@ relop(>=(Ty), Ty) :- int_ty(Ty).
 inference(Tcx, [Address], _\8) :-
     inference(Tcx, Address, AddressTy),
     ( AddressTy = u\16 -> true
-    ; throw(error('memory must be accessed with a `u\16` address'(Address\AddressTy)))
+    ; throw(error('memory must be accessed with a `u\\16` address'(Address\AddressTy)))
     ).
 
 inference(Tcx, ?Symbol, Ty) :-

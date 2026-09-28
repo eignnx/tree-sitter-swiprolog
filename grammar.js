@@ -19,7 +19,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.non_comma_operator, $.graphic_char_atom]
+    [$.non_comma_operator, $.graphic_char_atom],
   ],
 
   externals: $ => [
@@ -35,24 +35,32 @@ module.exports = grammar({
       $.read_term_end_token,
     ),
 
-    _term: $ => $._restricted_operators_term,
+    _term: $ => choice(
+      $._atomic_term,
+      $.prefix_operator_term,
+      $.binop_term,
+    ),
 
     _restricted_operators_term: $ => choice(
-      $.compound_term,
-      $.string,
-      prec(1, $.variable),
-      $.list_literal,
+      $._atomic_term,
       $.prefix_operator_term,
+      $.restricted_binop_term,
+    ),
+
+    _atomic_term: $ => choice(
+      $.compound_term,
       prec(2, $.atom),
+      prec(1, $.variable),
+      $.string,
       $.integer,
       $.rational,
       $.float,
       $.character_literal,
-      prec(10, $.binop_term),
       $.parenthesized_term,
-      prec(50, $.quasi_quotation),
+      $.list_literal,
       $.curly_braced_term,
       $.dict_literal,
+      prec(50, $.quasi_quotation),
     ),
 
     compound_term: $ => prec(100, seq(
@@ -172,6 +180,12 @@ module.exports = grammar({
       /0'\\[0-7]{1,3}/,
     ),
 
+    restricted_binop_term: $ => prec.right(seq(
+      field("r_left", $._restricted_operators_term),
+      field("r_operator", $.non_comma_operator),
+      field("r_right", $._restricted_operators_term),
+    )),
+
     binop_term: $ => prec.right(seq(
       field("left", $._term),
       field("operator", $.operator),
@@ -183,9 +197,14 @@ module.exports = grammar({
     operator: $ => choice(
       $.non_comma_operator,
       ",",
-      ";",
     ),
     non_comma_operator: $ => choice(
+      ";",
+      "is",
+      "in",
+      "div",
+      "mod",
+      "xor",
       /[-+*/\\^<>=~:.?@#$&]+/,
       // Sm = Math symbols:
       //   > Mathematical symbols (e.g., +, −, =, ×, ÷, √, ∊, ≠). Does not
@@ -207,7 +226,7 @@ module.exports = grammar({
       // Po = Other punctuation
       //
       // Note: `%` is never seen as part of an operator.
-      // Note: I'm assuming underscore `_` should not be included here as a 
+      // Note: I'm assuming underscore `_` should not be included here as a
       //       standalone operator (`X = (a _ b).` does not parse).
       /[[\p{Sm}\p{Sc}\p{Sk}\p{So}\p{Pc}\p{Pd}\p{Po}]--[%_]]/v
     ),
@@ -218,7 +237,9 @@ module.exports = grammar({
     )),
 
     parenthesized_term: $ => seq("(", $._term, ")"),
-    curly_braced_term: $ => seq("{", $._term, "}"),
+    curly_braced_term: $ => choice(
+      seq("{", optional($._term), "}"),
+    ),
 
     dict_literal: $ => seq(
       field("tag", choice($.atom, $.variable)),

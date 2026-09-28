@@ -5,9 +5,12 @@
 :- op(300, fx, $).
 
 :- det(pred/1).
-:- discontiguous pred.
 
 pred(X) :- test(X).
+my_mod:my_pred(X) :- test(X).
+my_mod:my_pred(_).
+my_mod:my_pred :- test(X).
+my_mod:my_pred.
 
 'this is a~n thing'(asd).
 
@@ -16,7 +19,11 @@ test :-
     format('a~tsdf~tas~`_tdf~*|', [123]),
     X = 'looks like an atom and IS an atom',
     'it looks like an atom but it\'s a functor'(asdf),
+    MyString = "String!",
 end.
+
+% How about some comments?
+% TODO: better comments?
 
 end.
 
@@ -56,3 +63,4 @@ html :-
     {|html(Person)||<p>Hello, Person</p>|},
     end.
 
+:- discontiguous pred.

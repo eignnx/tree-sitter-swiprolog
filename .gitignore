@@ -46,3 +46,4 @@ zig-out/
 *.tgz
 *.zip
 Session.vim
+Sess.vim
